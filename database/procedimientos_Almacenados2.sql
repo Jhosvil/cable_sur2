@@ -36,5 +36,23 @@ END $$
 CALL listar_cliente_san_miguel()
 
 
+DELIMITER $$
+CREATE PROCEDURE listar_cliente_morochuco()
+BEGIN
+SELECT 	clientes.`idcliente`, 
+	perC.apellidos AS 'apecliente', perC.nombres AS 'nomcliente', perC.dni,
+	perU.apellidos AS 'apeusuario', perU.nombres AS 'nomusuario',
+	clientes.`fecharegistro`
+	FROM clientes
+	INNER JOIN personas perC ON perC.idpersona = clientes.`idpersona`
+	INNER JOIN usuarios ON usuarios.`idusuario` = clientes.`idusuarioregistro`
+	INNER JOIN personas perU ON perU.idpersona = usuarios.`idpersona`
+	WHERE perC.`iddistrito` = '050203'; -- distrito Los Morochucos
+END $$
+-- 050203 los morochucos
+
+-- Desabilitar al cliente
+-- ----------------------------------------------------------------------------
+
 	
 	

@@ -113,9 +113,9 @@ require_once 'views/acceso-seguro.php';
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="main.php?view=clientes.activos.morochucos" class="nav-link">
                   <i class="nav-icon fas fa-search-location"></i>
-                  <p>Ayacucho</p>
+                  <p>Los Morochucos</p>
                 </a>
               </li>
               <li class="nav-item">

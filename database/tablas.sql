@@ -48,7 +48,8 @@ fecharegistro 		DATE 		NOT NULL DEFAULT NOW(),
 idusuarioregistro 	INT 		NOT NULL, 	-- FK
 
 CONSTRAINT fk_idpersona_cli FOREIGN KEY (idpersona) REFERENCES personas (idpersona),
-CONSTRAINT fk_idusuarioregistro_cli FOREIGN KEY (idusuarioregistro) REFERENCES usuarios (idusuario)
+CONSTRAINT fk_idusuarioregistro_cli FOREIGN KEY (idusuarioregistro) REFERENCES usuarios (idusuario),
+CONSTRAINT uk_cli_idpersona UNIQUE (idpersona)
 )ENGINE = INNODB;
 
 

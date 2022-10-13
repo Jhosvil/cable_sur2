@@ -23,6 +23,15 @@ class Cliente extends ModelMaster{
       } catch (Exception $e) {
         die($e->getMessage());
       }
+    }
+
+    public function listarClienteMorochucos()
+    {
+      try {
+        return parent::getRows("listar_cliente_morochuco", true);
+      } catch (Exception $e) {
+        die($e->getMessage());
+      }
 
     }
 }
