@@ -15,6 +15,16 @@ class Cliente extends ModelMaster{
             die($e->getMessage());
         }
     }
+
+    public function listarClienteSanMiguel()
+    {
+      try {
+        return parent::getRows("listar_cliente_san_miguel", true);
+      } catch (Exception $e) {
+        die($e->getMessage());
+      }
+
+    }
 }
 
 ?>

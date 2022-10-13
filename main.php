@@ -102,6 +102,31 @@ require_once 'views/acceso-seguro.php';
             </ul>
           </li>
 
+          <!-- operaciones distritos -->
+          <li class="nav-item menu-close">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-map-marker-alt"></i>
+              <p>
+                Distritos
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-search-location"></i>
+                  <p>Ayacucho</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-search-location"></i>
+                  <p>San Miguel</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
            <!-- Opciones personalizadas -->
            <li class="nav-item">
              <a href="main.php?view=contactos" class="nav-link">
