@@ -3,7 +3,7 @@
     <h3>Lista de Clientes del distrito de san miguel</h3>
   </div>
   <div class="row">
-    <table border ="1" class="table table-striped table-bordered" id="table-cliente-sanmiguel" style="width:100%">
+    <table border ="1" class="table table-striped table-bordered" id="tablaClienteSanMiguel" style="width:100%">
       <thead>
         <tr>
           <th>Id</th>
@@ -40,9 +40,9 @@
 
 <script>
   $(document).ready(function () {
-    function renderDataTableClientesSanmiguel(){
+    function renderDataTablelistarClienteSanMiguel(){
 
-        $("#table-cliente-sanmiguel").DataTable({
+        $("#tablaClienteSanMiguel").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
       })//.buttons().container().appendTo('#TableAdminds_wrapper .col-md-6:eq(0)');
@@ -62,18 +62,17 @@
         'operacion' : 'listarClienteSanMiguel'
       };
       $.ajax({
-        url : 'controllers/clientes.activos.sanmiguel.php',
+        url : 'controllers/cliente.controller.php',
         type : 'GET',
-        data : datos
+        data : datos,
         success: function(e) {
-          var tabla = $("#table-cliente-sanmiguel").DataTable();
+          var tabla = $("#tablaClienteSanMiguel").DataTable();
           tabla.destroy();
           $("#listarClienteSanMiguel").html(e);
-          renderDataTableClientesSanmiguel();
+          renderDataTablelistarClienteSanMiguel();
         }
       });
     }
-
     listarClienteSanMiguel();
   });
 </script>

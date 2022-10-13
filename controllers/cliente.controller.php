@@ -37,6 +37,9 @@ if (isset($_GET['operacion'])) {
               <td>{$registro->apeusuario}</td>
               <td>{$registro->nomusuario}</td>
               <td>{$registro->fecharegistro}</td>
+              <td><button id='btnEliminarCliente' title='Desabilitar Cliente' data-idcliente='{$registro->idcliente}' type='button' class='btn btn-danger'>
+                <i class='fas fa-user-minus'></i>
+              </button></td>
             </tr>
           ";
         }
