@@ -6,7 +6,7 @@ require_once '../core/model.master.php';
 class Cliente extends ModelMaster{
 
     // ESTO ES UN EJEMPLO
-    
+
     // REGISTRAR CLIENTE
     public function registrarCliente(array $data)
     {

@@ -30,7 +30,7 @@ SELECT 	clientes.`idcliente`,
 	INNER JOIN personas perC ON perC.idpersona = clientes.`idpersona`
 	INNER JOIN usuarios ON usuarios.`idusuario` = clientes.`idusuarioregistro`
 	INNER JOIN personas perU ON perU.idpersona = usuarios.`idpersona`
-	WHERE perC.`iddistrito` = '050501'; -- San Miguel
+	WHERE perC.`iddistrito` = '050501' AND clientes.`estado`= '1'; -- San Miguel
 END $$
 
 CALL listar_cliente_san_miguel()
@@ -47,12 +47,36 @@ SELECT 	clientes.`idcliente`,
 	INNER JOIN personas perC ON perC.idpersona = clientes.`idpersona`
 	INNER JOIN usuarios ON usuarios.`idusuario` = clientes.`idusuarioregistro`
 	INNER JOIN personas perU ON perU.idpersona = usuarios.`idpersona`
-	WHERE perC.`iddistrito` = '050203'; -- distrito Los Morochucos
+	WHERE perC.`iddistrito` = '050203' AND clientes.`estado`= '1'; -- distrito Los Morochucos
 END $$
 -- 050203 los morochucos
 
--- Desabilitar al cliente
+-- Desabilitar al cliente activo
 -- ----------------------------------------------------------------------------
+DELIMITER $$
+CREATE PROCEDURE inabilitar_clientes
+(
+ IN _idcliente INT,
+ IN _idusuarioregistro INT
+)
+BEGIN
+	UPDATE clientes SET estado = '0', fechadesabilitado = NOW(), idusuarioregistro = _idusuarioregistro
+	WHERE idcliente = _idcliente;
+END $$
 
-	
+-- Habilitar a un cliente inactivo
+-- ----------------------------------------------------------------------------
+DELIMITER $$
+CREATE PROCEDURE habilitar_clientes
+(
+ IN _idcliente INT,
+ IN _idusuarioregistro INT
+)
+BEGIN
+	UPDATE clientes SET estado = '1', fechadesabilitado = NULL, idusuarioregistro = _idusuarioregistro
+	WHERE idcliente = _idcliente;
+END $$
+
+SELECT * FROM clientes	
+
 	

@@ -45,6 +45,7 @@ CREATE TABLE clientes
 idcliente 		INT 		AUTO_INCREMENT 		PRIMARY KEY,
 idpersona		INT 		NOT NULL, 	-- FK
 fecharegistro 		DATE 		NOT NULL DEFAULT NOW(),
+estado			INT 		NOT NULL DEFAULT '1' -- 1= activo; 0=inactivo
 idusuarioregistro 	INT 		NOT NULL, 	-- FK
 
 CONSTRAINT fk_idpersona_cli FOREIGN KEY (idpersona) REFERENCES personas (idpersona),
