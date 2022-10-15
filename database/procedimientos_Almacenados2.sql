@@ -78,5 +78,3 @@ BEGIN
 END $$
 
 SELECT * FROM clientes	
-
-	

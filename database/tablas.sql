@@ -45,12 +45,12 @@ CREATE TABLE clientes
 idcliente 		INT 		AUTO_INCREMENT 		PRIMARY KEY,
 idpersona		INT 		NOT NULL, 	-- FK
 fecharegistro 		DATE 		NOT NULL DEFAULT NOW(),
-estado			INT 		NOT NULL DEFAULT '1' -- 1= activo; 0=inactivo
+fechadesabilitado 	DATE 		NULL,
+estado			INT 		NOT NULL DEFAULT '1', -- 1= activo; 0=inactivo
 idusuarioregistro 	INT 		NOT NULL, 	-- FK
 
 CONSTRAINT fk_idpersona_cli FOREIGN KEY (idpersona) REFERENCES personas (idpersona),
-CONSTRAINT fk_idusuarioregistro_cli FOREIGN KEY (idusuarioregistro) REFERENCES usuarios (idusuario),
-CONSTRAINT uk_cli_idpersona UNIQUE (idpersona)
+CONSTRAINT fk_idusuarioregistro_cli FOREIGN KEY (idusuarioregistro) REFERENCES usuarios (idusuario)
 )ENGINE = INNODB;
 
 
