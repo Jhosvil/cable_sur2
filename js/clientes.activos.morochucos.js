@@ -1,3 +1,4 @@
+var idcliente = "";
 function renderDataTablelistarClienteMorochucos(){
     $("#tablaClienteMorochucos").DataTable({
     "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -31,5 +32,24 @@ function listarClienteMorochucos() {
         }
     });
 }
+
+$("#tablaClienteMorochucos").on("click", "#btnEliminarCliente", function() {
+  idcliente = $(this).attr("data-idcliente");
+  var datos = {
+    'operacion' : 'inabilitarCliente',
+    'idcliente' : idcliente
+  };
+  if (confirm("¿Esta seguro de elimanr a este cliente de ID : " + idcliente+ " ?")) {
+    $.ajax({
+      url : 'controllers/cliente.controller.php',
+      type: 'GET',
+      data : datos,
+      success : function(e) {
+        alert("Se elimino correctamente a este cliente de ID : " + idcliente)
+        listarClienteMorochucos();
+      }
+    });
+  }
+})
 
 listarClienteMorochucos();

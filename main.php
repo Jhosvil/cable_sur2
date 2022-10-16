@@ -50,9 +50,9 @@ require_once 'views/acceso-seguro.php';
    <!-- Main Sidebar Container -->
    <aside class="main-sidebar sidebar-dark-primary elevation-4">
      <!-- Brand Logo -->
-     <a href="index.php?view=landing_page" class="brand-link">
+     <a href="main.php?view=landing-page" class="brand-link">
        <img src="dist/img/logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-       <span class="brand-text font-weight-light">Cable Sur Digital S.R.L</span>
+       <span class="brand-text font-weight-light">Cable Sur Digital</span>
      </a>
 
      <!-- Sidebar -->
@@ -226,7 +226,7 @@ require_once 'views/acceso-seguro.php';
      if(content == false){
        // El usuario ingreso al dashboard y
        // No ha seleccionado una de las opciones del SIDEBAR
-       $("#content-data").load('views/landing_page.php');
+       $("#content-data").load('views/landing-page.php');
      }
      else{
        // La vaieable view tiene un valor (archivo que se desea abrir)

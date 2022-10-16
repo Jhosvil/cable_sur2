@@ -17,6 +17,7 @@ class Cliente extends ModelMaster{
         }
     }
 
+    // LISTAR CLIENTES DEL DISTRITO DE SAN MIGUEL
     public function listarClienteSanMiguel()
     {
       try {
@@ -26,6 +27,7 @@ class Cliente extends ModelMaster{
       }
     }
 
+    // LISTAR CLIENTES DEL DISTRITO DE LOS MOROCHUCOS
     public function listarClienteMorochucos()
     {
       try {
@@ -34,6 +36,16 @@ class Cliente extends ModelMaster{
         die($e->getMessage());
       }
 
+    }
+
+    // INABILITAR A UN CLIENTE
+    public function inabilitarCliente($idcliente)
+    {
+      try {
+        parent::execProcedure($idcliente, "inabilitar_clientes", false);
+      } catch (Exception $e) {
+        die($e->getMessage());
+      }
     }
 }
 

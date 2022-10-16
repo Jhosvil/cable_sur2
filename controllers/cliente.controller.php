@@ -19,7 +19,7 @@ if (isset($_GET['operacion'])) {
         // ENVIAMOS LOS DATOS AL MODELO
         $cliente->registrarCliente($datos);
     }
-    //smith esto es una prueba  
+    //smith esto es una prueba
     // OPERACION PARA LISTAR A LOS CLIENTES DEL DISTRITO DE SAN MIGUEL
     if($operacion == 'listarClienteSanMiguel'){
       // Almacenamos en un SplObjectStorage
@@ -69,6 +69,16 @@ if (isset($_GET['operacion'])) {
           ";
         }
       }
+    }
+
+    // OPRACION PARA INHABILITAR A UN CLIENTE
+    if ($operacion == 'inabilitarCliente') {
+      # Array asociativo con datos
+      $datosenviar = [
+        "idcliente" => $_GET['idcliente'],
+        "idusuarioregistro" => $_SESSION['idusuario']
+      ];
+      $cliente->inabilitarCliente($datosenviar);
     }
 }
 ?>
