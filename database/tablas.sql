@@ -5,7 +5,7 @@ USE cable_sur;
 /*
 ************* PERSONAS ******************************
 */
-CREATE TABLE personas
+CREATE TABLE `personas`
 (
 idpersona 	INT 	    AUTO_INCREMENT PRIMARY KEY,
 iddistrito	VARCHAR(6)  NOT NULL, -- FK

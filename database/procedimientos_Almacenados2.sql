@@ -94,3 +94,14 @@ INSERT INTO direcciones(direccion)
 VALUES(_direccion);
 END $$
 
+DELIMITER $$
+CREATE PROCEDURE Registrar_planes
+(
+IN _nombreplan VARCHAR(50),
+IN _descripcion VARCHAR(100),
+IN _precio DECIMAL(4,2)
+)
+BEGIN
+INSERT INTO planes (nombreplan, descripcion, precio)
+VALUES (_nombreplan, _descripcion, _precio);
+END $$
