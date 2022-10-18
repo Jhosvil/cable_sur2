@@ -27,7 +27,7 @@
               <div class="col-sm-4">
                 <select id="txtDistrito" class="js-example-basic-single js-states form-control form-control-border" >
                   <!-- Se cargarán de forma asincrona -->
-                </select>   
+                </select>
               </div>
             </div>
             <div class="row">
@@ -166,7 +166,7 @@
 <button type="button" class="btn btn-primary boton-nuevo-per" data-toggle="modal" data-target="#modalAgregarPersona" data-whatever="@mdo">
   Nueva persona
 </button>
-<br><br>
+<br>
 <table border ="1" class="table table-striped table-bordered" id="table-personas" style="width:100%">
   <thead>
     <tr>

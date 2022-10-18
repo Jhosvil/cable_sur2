@@ -53,6 +53,14 @@ CONSTRAINT fk_idpersona_cli FOREIGN KEY (idpersona) REFERENCES personas (idperso
 CONSTRAINT fk_idusuarioregistro_cli FOREIGN KEY (idusuarioregistro) REFERENCES usuarios (idusuario)
 )ENGINE = INNODB;
 
+/*
+*************DIRECCIONES *************************
+*/
+CREATE TABLE direcciones
+(
+iddireccion 	INT AUTO_INCREMENT PRIMARY KEY,
+direccion 	VARCHAR(50) NOT NULL
+)ENGINE = INNODB;
 
 /*
 ************* PLANES ******************************

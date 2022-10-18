@@ -78,3 +78,19 @@ BEGIN
 END $$
 
 SELECT * FROM clientes	
+
+-- -------------------------------------------------------------------------------------------------------------------------------
+--                            DIRECCIONES
+-- -------------------------------------------------------------------------------------------------------------------------------
+-- Registrar
+-- -------------
+DELIMITER $$
+CREATE PROCEDURE spu_registrar_direcciones
+(
+ IN _direccion VARCHAR(50)
+)
+BEGIN
+INSERT INTO direcciones(direccion)
+VALUES(_direccion);
+END $$
+

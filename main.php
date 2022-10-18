@@ -27,11 +27,11 @@ require_once 'views/acceso-seguro.php';
   <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
  </head>
- <body class="hold-transition sidebar-mini">
+ <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
  <div class="wrapper">
 
    <!-- Navbar -->
-   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+   <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed">
      <!-- Left navbar links -->
      <ul class="navbar-nav">
        <li class="nav-item">
@@ -127,6 +127,14 @@ require_once 'views/acceso-seguro.php';
             </ul>
           </li>
 
+
+          <li class="nav-item">
+            <a href="main.php?view=direcciones" class="nav-link">
+              <i class="nav-icon fas fa-user-circle"></i>
+              <p>Direcciones</p>
+            </a>
+          </li>
+
            <!-- Opciones personalizadas -->
            <li class="nav-item">
              <a href="main.php?view=contactos" class="nav-link">
@@ -166,8 +174,8 @@ require_once 'views/acceso-seguro.php';
    <div class="content-wrapper">
 
      <!-- Main content -->
-     <div class="content">
-       <div class="container-fluid pt-2" id="content-data">
+     <div class="container">
+       <div class="container-fluid" id="content-data">
 
          <!-- Esta sección se carga de forma dinamica -->
 
@@ -186,16 +194,9 @@ require_once 'views/acceso-seguro.php';
      </div>
    </aside>
    <!-- /.control-sidebar -->
-
    <!-- Main Footer -->
-   <footer class="main-footer">
-     <!-- To the right -->
-     <div class="float-right d-none d-sm-inline">
-       CABLE SUR DIGITAL S.R.L
-     </div>
-     <!-- Default to the left -->
-     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-   </footer>
+   
+
  </div>
  <!-- ./wrapper -->
 
