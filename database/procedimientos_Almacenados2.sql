@@ -129,3 +129,35 @@ BEGIN
 INSERT INTO planes (nombreplan, descripcion, precio)
 VALUES (_nombreplan, _descripcion, _precio);
 END $$
+
+-- Listar planes activos 
+-- ----------------------------
+DELIMITER $$
+CREATE PROCEDURE  listar_planes_activos ()
+BEGIN
+	SELECT * FROM planes WHERE estado = '1' ; 
+END $$
+
+-- listar planes inactivos
+-- ----------------------------
+DELIMITER $$
+CREATE PROCEDURE listar_planes_inactivos ()
+BEGIN
+	SELECT * FROM planes WHERE estado = '0';
+END $$
+
+-- eliminalr
+DELIMITER $$
+CREATE PROCEDURE eliminar_planes
+(
+IN _idplan INT 
+)
+BEGIN
+	UPDATE planes SET estado = '0' WHERE idplan = _idplan;
+END $$
+
+
+
+
+
+
