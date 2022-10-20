@@ -27,7 +27,7 @@ CREATE TABLE usuarios
 idusuario	INT 		AUTO_INCREMENT PRIMARY KEY,
 idpersona	INT 		NOT NULL,	-- FK
 nombreusuario	VARCHAR(50) 	NOT NULL,
-claveacceso	VARCHAR(100) 	NOT NULL,
+claveacceso	VARCHAR(200) 	NOT NULL,
 rol 		VARCHAR(50)	NOT NULL,
 fecharegistro 	DATETIME 	NOT NULL 	DEFAULT NOW(),
 fechabaja 	DATETIME 	NULL,

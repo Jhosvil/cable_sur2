@@ -85,7 +85,7 @@ INSERT INTO personas(iddistrito,nombres, apellidos, dni, telefono, email)
 	VALUES(_iddistrito,_nombres, _apellidos, _dni, _telefono, _email);
 END $$
 
-CALL registrar_personas ("050501","jhon", "Morales Jeri", "12345679", "123456789", "");
+CALL registrar_personas ("050501","Smith", "Morales Jeri", "12345679", "123456789", "");
 SELECT * FROM personas
 
 -- ---------------------------------------------------------------------------------------------
@@ -154,9 +154,12 @@ INSERT INTO usuarios(idpersona, nombreusuario, claveacceso, rol)
 	VALUES(_idpersona, _nombreusuario, _claveacceso, _rol);
 
 END $$
-CALL registrar_usuarios('1', 'corina12', '$2Y$10$GW8sr/KicRQ0hQODwUVmZ.v852FhfE01vNeANc5LzMUH6QeR4JztG', 'Tecnico')
+CALL registrar_usuarios('1', 'smith12', '$2Y$10$GW8sr/KicRQ0hQODwUVmZ.v852FhfE01vNeANc5LzMUH6QeR4JztG', 'Administrador')
+
+UPDATE usuarios SET claveacceso = '$2y$10$BvMvL.Us6KO8ww.ne.Kcme5XNvjXG6GUXWCEjLQR5AkF9tDGRsxPm';
 
 SELECT * FROM usuarios
+
 -- listar usuarios activos
 -- ---------------------------------------------------------
 DELIMITER $$

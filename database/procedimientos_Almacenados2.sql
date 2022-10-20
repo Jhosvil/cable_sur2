@@ -22,7 +22,7 @@ CALL spu_registrar_cliente("1", "1");
 DELIMITER $$
 CREATE PROCEDURE listar_cliente_san_miguel()
 BEGIN
-SELECT 	clientes.`idcliente`, 
+SELECT 	clientes.`idcliente`,
 	perC.apellidos AS 'apecliente', perC.nombres AS 'nomcliente', perC.dni,
 	perU.apellidos AS 'apeusuario', perU.nombres AS 'nomusuario',
 	clientes.`fecharegistro`
@@ -39,7 +39,7 @@ CALL listar_cliente_san_miguel()
 DELIMITER $$
 CREATE PROCEDURE listar_cliente_morochuco()
 BEGIN
-SELECT 	clientes.`idcliente`, 
+SELECT 	clientes.`idcliente`,
 	perC.apellidos AS 'apecliente', perC.nombres AS 'nomcliente', perC.dni,
 	perU.apellidos AS 'apeusuario', perU.nombres AS 'nomusuario',
 	clientes.`fecharegistro`
@@ -77,7 +77,7 @@ BEGIN
 	WHERE idcliente = _idcliente;
 END $$
 
-SELECT * FROM clientes	
+SELECT * FROM clientes
 
 -- -------------------------------------------------------------------------------------------------------------------------------
 --                            DIRECCIONES
@@ -94,6 +94,30 @@ INSERT INTO direcciones(direccion)
 VALUES(_direccion);
 END $$
 
+-- Listar
+-- -------------------------
+DELIMITER $$
+CREATE PROCEDURE spu_listar_direcciones()
+BEGIN
+SELECT * FROM direcciones;
+END $$
+
+-- Eliminar
+-- -------------------------
+DELIMITER $$
+CREATE PROCEDURE spu_eliminar_direccion
+(
+  IN _iddireccion INT
+)
+BEGIN
+DELETE FROM direcciones WHERE iddireccion = _iddireccion;
+END $$
+
+-- -------------------------------------------------------------------------------------------------------------------------------
+--                            PLANES
+-- -------------------------------------------------------------------------------------------------------------------------------
+-- Registrar
+-- --------------------------
 DELIMITER $$
 CREATE PROCEDURE Registrar_planes
 (
