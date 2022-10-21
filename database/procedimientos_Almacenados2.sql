@@ -146,7 +146,8 @@ BEGIN
 	SELECT * FROM planes WHERE estado = '0';
 END $$
 
--- eliminalr
+-- eliminar plan 
+-- --------------------------
 DELIMITER $$
 CREATE PROCEDURE eliminar_planes
 (
@@ -156,6 +157,35 @@ BEGIN
 	UPDATE planes SET estado = '0' WHERE idplan = _idplan;
 END $$
 
+-- listar un plan
+-- -------------------------
+DELIMITER $$
+CREATE PROCEDURE listar_un_plan
+(
+IN _idplan INT
+)
+BEGIN
+	SELECT * FROM planes WHERE idplan = _plan;
+END
+
+-- modificar plan 
+-- ---------------------------
+
+DELIMITER $$
+CREATE PROCEDURE modificar_plan
+(
+IN _idplan	INT,
+IN _nombreplan	VARCHAR(50),
+IN _descripcion	VARCHAR(50),
+IN _precio	DECIMAL(4,2)
+)
+BEGIN
+UPDATE planes SET
+	nombreplan		= _nombreplan,
+	descripcion 	= _descripcion,
+	precio 			= _precio
+	WHERE idplan 	= _idplan;
+END
 
 
 
