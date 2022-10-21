@@ -147,7 +147,7 @@ BEGIN
 END $$
 
 -- eliminar plan 
--- --------------------------
+-- ----------------------------
 DELIMITER $$
 CREATE PROCEDURE eliminar_planes
 (
