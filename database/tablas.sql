@@ -58,8 +58,9 @@ CONSTRAINT fk_idusuarioregistro_cli FOREIGN KEY (idusuarioregistro) REFERENCES u
 */
 CREATE TABLE direcciones
 (
-iddireccion 	INT AUTO_INCREMENT PRIMARY KEY,
-direccion 	VARCHAR(50) NOT NULL
+iddireccion 	INT 		NOT NULL	AUTO_INCREMENT PRIMARY KEY,
+direccion 	VARCHAR(50) 	NOT NULL,
+estado 		INT 		NOT NULL 	DEFAULT '1' -- 1 = activo / 0 = inactivo
 )ENGINE = INNODB;
 
 /*
@@ -80,14 +81,19 @@ estado 		INT  		NOT NULL   DEFAULT '1'
 */
 DROP TABLE contratos
 (
-idcontrato 	INT 		AUTO_INCREMENT 		PRIMARY KEY,
-codigo		INT 		NOT NULL,	
-idcliente	INT 		NOT NULL, 	-- FK
-idplan 		INT 		NOT NULL,	-- FK
-anexo 		INT 		NULL,
+idcontrato 	INT 		NOT NULL	AUTO_INCREMENT 		PRIMARY KEY,
+idcliente 	INT 		NOT NULL, 	-- FK
+idplan 		INT 		NOT NULL, 	-- FK
+codcintillo 	INT		NOT NULL,
+codsuministro 	CHAR(8) 	NOT NULL,
+referencia 	VARCHAR(100) 	NULL,
+tipodireccion 	VARCHAR(50)	NOT NULL,
+iddireccion	INT 		NOT NULL,	-- FK
+numerodireccion INT 		NULL,
+anexo		INT 		NULL,
 fechainicio 	DATE 		NOT NULL,
-fechatermino 	DATE 		NULL,
-diapago 	DATE 		NULL,
+fechatermino 	DATE 		NOT NULL,
+diapago 	DATE 		NOT NULL
 
 CONSTRAINT fk_idcliente_cont FOREIGN KEY (idcliente) REFERENCES clientes (idcliente),
 CONSTRAINT fk_idplan_cont FOREIGN KEY (idplan) REFERENCES planes (idplan)

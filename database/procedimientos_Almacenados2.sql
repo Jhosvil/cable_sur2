@@ -99,7 +99,7 @@ END $$
 DELIMITER $$
 CREATE PROCEDURE spu_listar_direcciones()
 BEGIN
-SELECT * FROM direcciones;
+SELECT * FROM direcciones WHERE estado = '1';
 END $$
 
 -- Eliminar
@@ -110,7 +110,7 @@ CREATE PROCEDURE spu_eliminar_direccion
   IN _iddireccion INT
 )
 BEGIN
-DELETE FROM direcciones WHERE iddireccion = _iddireccion;
+	UPDATE direcciones SET estado = '0' WHERE iddireccion = _iddireccion;
 END $$
 
 -- -------------------------------------------------------------------------------------------------------------------------------
