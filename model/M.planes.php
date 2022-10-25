@@ -63,6 +63,15 @@ class Planes extends ModelMaster{
         
 
     }
+    //habilitar un plan inactivo
+    public function habilitarPlan(array $idplan)
+    {
+        try {
+            parent::execProcedure($idplan, "habilitar_planes", false);
+        } catch (Exception $e) {
+          die($e->getMessage());
+        }
+    }
     
 
 }

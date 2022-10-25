@@ -126,6 +126,29 @@ require_once 'views/acceso-seguro.php';
               </li>
             </ul>
           </li>
+          <li class="nav-item menu-close">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-map-marker-alt"></i>
+              <p>
+                PLANES
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="main.php?view=planes-activos" class="nav-link">
+                  <i class="nav-icon fas fa-search-location"></i>
+                  <p>Activos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="main.php?view=planes-inactivos" class="nav-link">
+                <i class="nav-icon fas fa-search-location"></i>
+                  <p>Inactivos</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
 
           <li class="nav-item">
