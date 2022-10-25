@@ -70,9 +70,8 @@ CREATE TABLE planes
 idplan 		INT 		AUTO_INCREMENT PRIMARY KEY,
 nombreplan 	VARCHAR(50) 	NOT NULL,
 descripcion 	VARCHAR(100) 	NOT NULL,
-precio 		DECIMAL(4,2) 	NOT NULL,
+precio 		DECIMAL(6,2) 	NOT NULL,
 estado 		INT  		NOT NULL   DEFAULT '1'
-
 )ENGINE = INNODB;
 
 

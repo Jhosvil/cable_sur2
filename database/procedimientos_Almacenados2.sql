@@ -123,7 +123,7 @@ CREATE PROCEDURE Registrar_planes
 (
 IN _nombreplan VARCHAR(50),
 IN _descripcion VARCHAR(100),
-IN _precio DECIMAL(4,2)
+IN _precio DECIMAL(6,2)
 )
 BEGIN
 INSERT INTO planes (nombreplan, descripcion, precio)
@@ -177,13 +177,13 @@ CREATE PROCEDURE modificar_plan
 IN _idplan	INT,
 IN _nombreplan	VARCHAR(50),
 IN _descripcion	VARCHAR(50),
-IN _precio	DECIMAL(4,2)
+IN _precio	DECIMAL(6,2)
 )
 BEGIN
 UPDATE planes SET
-	nombreplan		= _nombreplan,
+	nombreplan	= _nombreplan,
 	descripcion 	= _descripcion,
-	precio 			= _precio
+	precio 		= _precio
 	WHERE idplan 	= _idplan;
 END
 
