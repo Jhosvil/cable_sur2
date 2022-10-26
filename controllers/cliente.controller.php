@@ -19,7 +19,6 @@ if (isset($_GET['operacion'])) {
         // ENVIAMOS LOS DATOS AL MODELO
         $cliente->registrarCliente($datos);
     }
-    //smith esto es una prueba
     // OPERACION PARA LISTAR A LOS CLIENTES DEL DISTRITO DE SAN MIGUEL
     if($operacion == 'listarClienteSanMiguel'){
       // Almacenamos en un SplObjectStorage
@@ -37,9 +36,14 @@ if (isset($_GET['operacion'])) {
               <td>{$registro->apeusuario}</td>
               <td>{$registro->nomusuario}</td>
               <td>{$registro->fecharegistro}</td>
-              <td><button id='btnEliminarCliente' title='Desabilitar Cliente' data-idcliente='{$registro->idcliente}' type='button' class='btn btn-danger'>
-                <i class='fas fa-user-minus'></i>
-              </button></td>
+              <td>
+                <button id='btnEliminarCliente' title='Desabilitar Cliente' data-idcliente='{$registro->idcliente}' type='button' class='btn btn-danger'>
+                  <i class='fas fa-user-minus'></i>
+                </button>
+                <button id='btnNuevoContrato' title='Realizar Nuevo Contrato' data-idcliente='{$registro->idcliente}' type='button' class='btn btn-success' data-toggle='modal' data-target='#modalRegistrarContrato' data-whatever='@mdo'>
+                  <i class='fas fa-file-contract'></i>
+                </button>
+              </td>
             </tr>
           ";
         }
@@ -62,9 +66,14 @@ if (isset($_GET['operacion'])) {
               <td>{$registro->apeusuario}</td>
               <td>{$registro->nomusuario}</td>
               <td>{$registro->fecharegistro}</td>
-              <td><button id='btnEliminarCliente' title='Desabilitar Cliente' data-idcliente='{$registro->idcliente}' type='button' class='btn btn-danger'>
-                <i class='fas fa-user-minus'></i>
-              </button></td>
+              <td>
+                <button id='btnEliminarCliente' title='Desabilitar Cliente' data-idcliente='{$registro->idcliente}' type='button' class='btn btn-danger'>
+                  <i class='fas fa-user-minus'></i>
+                </button>
+                <button id='btnNuevoContrato' title='Realizar Nuevo Contrato' data-idcliente='{$registro->idcliente}' type='button' class='btn btn-success'>
+                  <i class='fas fa-file-contract'></i>
+                </button>
+              </td>
             </tr>
           ";
         }

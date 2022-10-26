@@ -79,7 +79,7 @@ estado 		INT  		NOT NULL   DEFAULT '1'
 /*
 ************* USUARIOS ******************************
 */
-DROP TABLE contratos
+CREATE TABLE contratos
 (
 idcontrato 	INT 		NOT NULL	AUTO_INCREMENT 		PRIMARY KEY,
 idcliente 	INT 		NOT NULL, 	-- FK
@@ -91,12 +91,13 @@ tipodireccion 	VARCHAR(50)	NOT NULL,
 iddireccion	INT 		NOT NULL,	-- FK
 numerodireccion INT 		NULL,
 anexo		INT 		NULL,
-fechainicio 	DATE 		NOT NULL,
+fechainicio 	DATE 		NOT NULL DEFAULT NOW(),
 fechatermino 	DATE 		NOT NULL,
-diapago 	DATE 		NOT NULL
+diapago 	DATE 		NOT NULL,
 
 CONSTRAINT fk_idcliente_cont FOREIGN KEY (idcliente) REFERENCES clientes (idcliente),
-CONSTRAINT fk_idplan_cont FOREIGN KEY (idplan) REFERENCES planes (idplan)
+CONSTRAINT fk_idplan_cont FOREIGN KEY (idplan) REFERENCES planes (idplan),
+CONSTRAINT fk_iddireccion_cont FOREIGN KEY(iddireccion) REFERENCES direcciones(iddireccion)
 )ENGINE = INNODB;
 
 

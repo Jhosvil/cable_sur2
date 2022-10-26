@@ -36,12 +36,6 @@ if (isset($_GET['operacion'])) {
               <button id='btn-eliminar-direccion' data-iddireccion = '{$registro->iddireccion}' type='button' class='btn btn-danger'>
                 <i class='nav-icon fas fa-trash-alt'></i>
               </button>
-
-
-
-
-
-
             </td>
           </tr>
         ";
