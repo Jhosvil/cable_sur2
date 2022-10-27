@@ -2,19 +2,21 @@ var idpersona = "";
 
 function renderDataTablePersonas(){
     $("#table-personas").DataTable({
+    "order": [[0, 'desc']],
     "responsive": true, "lengthChange": false, "autoWidth": false,
     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     })//.buttons().container().appendTo('#TableAdminds_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "order": [[1, "desc"]],
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-    });
+    // $('#example2').DataTable({
+    //     "paging": true,
+    //
+    //     "lengthChange": false,
+    //     "searching": false,
+    //     "order": [[1, "desc"]],
+    //     "ordering": true,
+    //     "info": true,
+    //     "autoWidth": false,
+    //     "responsive": true,
+    // });
 }
 
 // LISTAR DEPARTAMENTOS
@@ -26,7 +28,7 @@ function listarDepartamentos() {
         data:   'operacion=listarDepartamentos',
         success: function (e){
         //Renderizar las etiquetas que vienen desde controllers
-        $("#txtDepartamento").html(e); //html e Inyecta nuenvas etiquetas e 
+        $("#txtDepartamento").html(e); //html e Inyecta nuenvas etiquetas e
         }
     }); // Fin ajax
 }
@@ -50,11 +52,11 @@ $("#txtDepartamento").change( function (){
 });
 
 // LISTAR DISTRITOS
-$("#txtProvincia").change( function (){ 
+$("#txtProvincia").change( function (){
     var datos = {
         'operacion' : 'listarDistritos',
         'idprovincia' : $(this).val()
-    };               
+    };
     $.ajax({
         url: 'controllers/ubigeo.controller.php',
         type: 'GET',
@@ -180,7 +182,7 @@ $("#table-personas").on("click", "#btnAñadirUsuario" , function(){
         let nombreusuario   = $("#txtNombreUsuario").val();
         let claveacceso     = $("#txtClaveAcceso").val();
         let rol             = $("#txtrolUsu").val();
-        
+
         alert(idpersona);
 
         if (nombreusuario == "" || claveacceso == "" || rol == "") {

@@ -26,9 +26,22 @@ require_once 'views/acceso-seguro.php';
   <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="dist/css/carga.css">
+  <link rel="stylesheet" href="dist/css/datetime.css">
  </head>
  <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
  <div class="wrapper">
+
+   <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+      <!-- <div class="content-xbox">
+        <div class="loader-xbox"></div>
+      </div> -->
+      <div class="content-loader-pro">
+        <div class="loader"></div>
+        <span>Cargando...</span>
+      </div>
+    </div>
 
    <!-- Navbar -->
    <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed">
@@ -43,6 +56,9 @@ require_once 'views/acceso-seguro.php';
        <li class="nav-item d-none d-sm-inline-block">
          <a href="#" class="nav-link">Contactos</a>
        </li>
+       <div class="oclock ml-4 hidden-xs ">
+          <span id="time"></span>
+        </div>
      </ul>
    </nav>
    <!-- /.navbar -->
@@ -218,7 +234,7 @@ require_once 'views/acceso-seguro.php';
    </aside>
    <!-- /.control-sidebar -->
    <!-- Main Footer -->
-   
+
 
  </div>
  <!-- ./wrapper -->
@@ -239,6 +255,7 @@ require_once 'views/acceso-seguro.php';
  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
  <script src="dist/js/colors-chart.js"></script>
  <script src="dist/js/option-chart.js"></script>
+ <script src="dist/js/getdatetime.js" charset="utf-8"></script>
 
  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
