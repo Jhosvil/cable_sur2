@@ -1,24 +1,5 @@
 var idpersona = "";
 
-function renderDataTablePersonas(){
-    $("#table-personas").DataTable({
-    "order": [[0, 'desc']],
-    "responsive": true, "lengthChange": false, "autoWidth": false,
-    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    })//.buttons().container().appendTo('#TableAdminds_wrapper .col-md-6:eq(0)');
-    // $('#example2').DataTable({
-    //     "paging": true,
-    //
-    //     "lengthChange": false,
-    //     "searching": false,
-    //     "order": [[1, "desc"]],
-    //     "ordering": true,
-    //     "info": true,
-    //     "autoWidth": false,
-    //     "responsive": true,
-    // });
-}
-
 // LISTAR DEPARTAMENTOS
 function listarDepartamentos() {
     //Enviar datos por ajax, usando el metodo GET
@@ -81,7 +62,7 @@ function listarPersonas() {
             var tabla = $("#table-personas").DataTable();
             tabla.destroy();
             $("#listarPersona").html(e);
-            renderDataTablePersonas();
+            $("#table-personas").DataTable(dataTableMedium);
         }
     });
 }

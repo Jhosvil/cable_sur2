@@ -1,22 +1,5 @@
 var iddireccion = "";
 
-function renderDataTableDirecciones(){
-    $("#tablaDirecciones").DataTable({
-    "responsive": true, "lengthChange": false, "autoWidth": false,
-    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    })//.buttons().container().appendTo('#TableAdminds_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "order": [[1, "desc"]],
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-    });
-}
-
 // REGISTRAR DIRECCIONES
 $("#btn-guardar-direccion").on('click',function() {
   let direccion = $('#txtDireccion').val();
@@ -54,7 +37,7 @@ function listarDirecciones() {
       var tabla = $("#tablaDirecciones").DataTable();
       tabla.destroy();
       $("#listarDirecciones").html(e);
-      renderDataTableDirecciones();
+      $("tablaDirecciones").DataTable(dataTableMedium);
     }
   });
 }

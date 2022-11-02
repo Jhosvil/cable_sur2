@@ -1,40 +1,5 @@
 var idplan = "";
 
-//funcion
-function renderDataTablePlan(){
-    $("#tablaListarPlanes").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        })//.buttons().container().appendTo('#TableAdminds_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "order": [[1, "desc"]],
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        }); 
-}
-function renderDataTablePlanInac(){
-    $("#tablaListarPlanes-inactivos").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        })//.buttons().container().appendTo('#TableAdminds_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "order": [[1, "desc"]],
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        }); 
-}
-
-
 // registrar plan 
 
 $("#btnRegistrarPlan").on("click", function(){
@@ -77,7 +42,7 @@ function listarPlanesActivos(){
             var tabla = $("#tablaListarPlanes").DataTable();
             tabla.destroy();
             $("#listarPlanes").html(e);
-            renderDataTablePlan();
+            $("#tablaListarPlanes").DataTable(dataTableMedium);
         }
     });
 }
@@ -166,7 +131,7 @@ function listarPlanesInactivos(){
             var tabla = $("#tablaListarPlanes-inactivos").DataTable();
             tabla.destroy();
             $("#listarPlanes-inactivos").html(e);
-            renderDataTablePlanInac();
+            $("#tablaListarPlanes-inactivos").DataTable(dataTableMedium);
         }
     });
 }

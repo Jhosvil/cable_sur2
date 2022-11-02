@@ -64,7 +64,7 @@ END $$
 DELIMITER $$
 CREATE PROCEDURE listar_Contratos()
 BEGIN
-	SELECT  DIST.`nombredistrito` AS 'distritoCli',
+	SELECT  	CONTR.`idcontrato`, DIST.`nombredistrito` AS 'distritoCli',
 			PERCLI.`apellidos` AS 'apellidoCli', PERCLI.`nombres` AS 'nombreCli', PERCLI.`dni` AS 'dniCli', 
 			PERCLI.`telefono` AS 'telefonoCli', PERCLI.`email` AS 'emailCli', USU.`rol` AS 'rolUsu',
 			PERUSU.`nombres` AS 'nombresUsu', PERUSU.`apellidos` AS 'apellidoUsu', PERUSU.`dni` AS 'dniUsu',

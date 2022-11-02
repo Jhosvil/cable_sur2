@@ -142,6 +142,31 @@ require_once 'views/acceso-seguro.php';
               </li>
             </ul>
           </li>
+
+          <!-- desplegable de contratos -->
+          <li class="nav-item menu-close">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                CONTRATOS
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="main.php?view=contratos-activos" class="nav-link">
+                  <i class="nav-icon fas fa-search-location"></i>
+                  <p>Activos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="main.php?view=planes-inactivos" class="nav-link">
+                <i class="nav-icon fas fa-search-location"></i>
+                  <p>Inactivos</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           <li class="nav-item menu-close">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-map-marker-alt"></i>
@@ -261,6 +286,23 @@ require_once 'views/acceso-seguro.php';
 
  <!-- Librerias para cargar vistas en el dashboard -->
  <script src="dist/js/loadweb.js"></script>
+
+ <!-- Data Table -->
+ <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="plugins/jszip/jszip.min.js"></script>
+<script src="plugins/pdfmake/pdfmake.min.js"></script>
+<script src="plugins/pdfmake/vfs_fonts.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+ <script src="dist/js/dataTableConfig.js" charset="utf-8"></script>
+
  <script>
    $(document).ready(function (){
      var content = getParam('view');

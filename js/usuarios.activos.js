@@ -1,22 +1,6 @@
 var idusuario = "";
 var datosNuevos = "";
 
-function renderDataTableUsuarios(){
-    $("#tablaUsuario").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#TableAdminds_wrapper .col-md-6:eq(0)');
-    $('#example3').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-    });
-}
-
 // LISTAR USUARIOS
 function listarUsuarios(){
     var datos = {
@@ -31,7 +15,7 @@ function listarUsuarios(){
             var tabla = $("#tablaUsuario").DataTable();
             tabla.destroy();
             $("#listarUsuario").html(e);
-            renderDataTableUsuarios();   
+            $("#tablaUsuario").DataTable(dataTableMedium);
         }
     });
 }
