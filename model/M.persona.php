@@ -16,7 +16,6 @@ class Persona extends ModelMaster
     } catch (Exception $e) {
       die($e->getMessage());
     }
-
   }
 
   function registrarPersona(array $data)

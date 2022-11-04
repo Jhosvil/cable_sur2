@@ -25,10 +25,10 @@ if (isset($_GET['operacion'])) {
             <td>{$registro->fechatermino}</td>
             <td>{$registro->diapago}</td>
             <td>
-              <button title='ver Contrato' type='button' class='btn btn-info' data-toggle='modal' data-target='.bd-example-modal-lg'>
+              <button id='btnVerContrato' data-idcontrato = '{$registro->idcontrato}' title='ver Contrato' type='button' class='btn btn-info' data-toggle='modal' data-target='.bd-example-modal-lg'>
                 <i class='nav-icon fas fa-eye'></i>
               </button>
-              <button title='Imprimir Contrato' type='button' class='btn btn-danger'>
+              <button id='btnImprimirContrato' data-idcontrato = '{$registro->idcontrato}' title='Imprimir Contrato' type='button' class='btn btn-danger'>
                 <i class='nav-icon fas fa-file-pdf'></i>
               </button>
             </td>
@@ -38,4 +38,12 @@ if (isset($_GET['operacion'])) {
     }
   }
 }
- ?>
+
+if ($operacion == 'listarUnContrato') {
+  $idcontrato = $contrato->listarUnContrato(["idcontrato" => $_GET["idcontrato"]]);
+
+  if ($idcontrato) {
+    echo json_encode($idcontrato[0]);
+  }
+}
+?>

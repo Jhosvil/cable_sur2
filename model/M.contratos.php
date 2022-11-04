@@ -10,7 +10,7 @@ class Contrato extends ModelMaster
   function registrarContrato($datos)
   {
     try {
-      parent::execProcedure($data, "registrar_contratos", false);
+      parent::execProcedure($datos, "registrar_contratos", false);
     } catch (Exception $e) {
       die($e->getMessage());
     }
@@ -32,8 +32,8 @@ class Contrato extends ModelMaster
   {
     try {
       return parent::execProcedure($idContrato,"listar_un_contrato", true);
-    } catch (\Exception $e) {
-
+    } catch (Exception $e) {
+      die($e->getMessage());
     }
 
   }
