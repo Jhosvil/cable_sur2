@@ -87,6 +87,4 @@ $('#tablaUsuario').on("click", "#btnDesabilitarUsuario",function(){
     }
 });
 
-renderDataTableUsuarios();
-        
 listarUsuarios();

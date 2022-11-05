@@ -1,4 +1,6 @@
 var idcontrato = "";
+
+//LISTAR CONTRATOS ACTIVOS
 function listarContratosActivos() {
   var datos ={
     'operacion' : 'listarContratos'
@@ -16,6 +18,7 @@ function listarContratosActivos() {
   });
 }
 
+// VER MAS DETALLE EL CONTRATO
 $("#tabla-contratos").on("click", "#btnVerContrato", function () {
   idcontrato = $(this).attr("data-idcontrato");
   var datos = {
@@ -62,6 +65,8 @@ $("#tabla-contratos").on("click", "#btnVerContrato", function () {
   });
 });
 
+
+// GENERAR REPORTE
 $("#tabla-contratos").on("click", "#btnImprimirContrato", function() {
   idcontrato = $(this).attr("data-idcontrato");
   

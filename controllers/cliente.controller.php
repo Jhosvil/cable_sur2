@@ -70,7 +70,7 @@ if (isset($_GET['operacion'])) {
                 <button id='btnEliminarCliente' title='Desabilitar Cliente' data-idcliente='{$registro->idcliente}' type='button' class='btn btn-danger'>
                   <i class='fas fa-user-minus'></i>
                 </button>
-                <button id='btnNuevoContrato' title='Realizar Nuevo Contrato' data-idcliente='{$registro->idcliente}' type='button' class='btn btn-success'>
+                <button id='btnNuevoContrato' title='Realizar Nuevo Contrato' data-idcliente='{$registro->idcliente}' type='button' class='btn btn-success' data-toggle='modal' data-target='#modalRegistrarContrato' data-whatever='@mdo'>
                   <i class='fas fa-file-contract'></i>
                 </button>
               </td>

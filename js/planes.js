@@ -38,7 +38,6 @@ function listarPlanesActivos(){
         type : 'GET',
         data: datos,
         success: function(e){
-            console.log(e);
             var tabla = $("#tablaListarPlanes").DataTable();
             tabla.destroy();
             $("#listarPlanes").html(e);
@@ -75,7 +74,7 @@ $("#tablaListarPlanes").on("click", "#btnModificarplan", function(){
     $.ajax({
         url : 'controllers/plan.controller.php',
         type :'GET',
-        data :datos,
+        data : datos,
         success : function(e){
             if (e != ""){
                 var data = JSON.parse(e);
@@ -83,7 +82,6 @@ $("#tablaListarPlanes").on("click", "#btnModificarplan", function(){
                 $("#txtNombrePlanMod").val(data.nombreplan);
                 $("#txtDescripcionPlanMod").val(data.descripcion);
                 $("#txtPrecioPlanMod").val(data.precio);
-               
             }
         }
     })
@@ -127,7 +125,6 @@ function listarPlanesInactivos(){
         type : 'GET',
         data: datos,
         success: function(e){
-            console.log(e);
             var tabla = $("#tablaListarPlanes-inactivos").DataTable();
             tabla.destroy();
             $("#listarPlanes-inactivos").html(e);

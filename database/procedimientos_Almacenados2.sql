@@ -157,6 +157,17 @@ BEGIN
 	UPDATE planes SET estado = '0' WHERE idplan = _idplan;
 END $$
 
+-- habilitar planes
+DELIMITER $$
+CREATE PROCEDURE habilitar_planes
+(
+IN _idplan INT 
+)
+BEGIN
+	UPDATE planes SET estado = '1' WHERE idplan = _idplan;
+END $$
+
+
 -- listar un plan
 -- -------------------------
 DELIMITER $$
@@ -165,7 +176,7 @@ CREATE PROCEDURE listar_un_plan
 IN _idplan INT
 )
 BEGIN
-	SELECT * FROM planes WHERE idplan = _plan;
+	SELECT * FROM planes WHERE idplan = _idplan;
 END
 
 -- modificar plan 
@@ -186,8 +197,4 @@ UPDATE planes SET
 	precio 		= _precio
 	WHERE idplan 	= _idplan;
 END
-
-
-
-
 

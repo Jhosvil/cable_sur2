@@ -50,5 +50,21 @@ if (isset($_GET['operacion'])) {
     // ENVIAMOS LOS DATOS AL MODELO
     $direccion->eliminarDirecciones($datos);
   }
+
+  // LISTAR DIRECCIONES EN UN SELECT PARA REGISTRAR UN CONTRATO
+  if ($operacion == 'listarDireccionContra') {
+    // Almacenamos en un objeto
+    $tabla = $direccion->listarDirecciones();
+
+    if (count($tabla) > 0) {
+      // Contiene datos que podemos mostrar
+      foreach ($tabla as $registro) {
+        // Imprimimos
+        echo "
+          <option selected value='{$registro->iddireccion}'>{$registro->direccion}</option>
+        ";
+      }
+    }
+  }
 }
 ?>

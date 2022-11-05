@@ -40,7 +40,7 @@ class Planes extends ModelMaster{
         try {
             parent::execProcedure($idplan, "eliminar_planes", false);
         } catch (Exception $e) {
-          die($e->getMessage());
+        die($e->getMessage());
         }
     }
     // listar un plan
@@ -57,7 +57,7 @@ class Planes extends ModelMaster{
     {
         try{
             parent::execProcedure($idplan, "modificar_plan", false);
-        } catch (Expeption $e){
+        } catch (Exception $e){
             die($e->getMessage());
         }
         
@@ -69,7 +69,7 @@ class Planes extends ModelMaster{
         try {
             parent::execProcedure($idplan, "habilitar_planes", false);
         } catch (Exception $e) {
-          die($e->getMessage());
+            die($e->getMessage());
         }
     }
     

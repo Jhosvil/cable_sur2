@@ -103,7 +103,19 @@ if (isset($_GET['operacion'])){
         $datosenviar =[
             "idplan" => $_GET['idplan']
         ];
-           $plan->habilitarPlan($datosenviar);
+        $plan->habilitarPlan($datosenviar);
+    }
+
+    // listar planes para registrar contratos en un select
+    if ($operacion == 'listarPlanesContra') {
+        $tabla = $plan->listarPlanesActivos();
+        if (count($tabla) >0){
+            foreach ($tabla as $registro){
+                echo"
+                    <option selected value='{$registro->idplan}'>{$registro->nombreplan}</option>
+                ";
+            }
+        }
     }
 
 }

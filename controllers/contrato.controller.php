@@ -46,4 +46,23 @@ if ($operacion == 'listarUnContrato') {
     echo json_encode($idcontrato[0]);
   }
 }
+
+if ($operacion == 'registrarContrato') {
+  $datos = [
+    "idcliente"     => $_GET['idcliente'],
+    "idplan"        => $_GET['idplan'],
+    "codcintillo"   => $_GET['codcintillo'],
+    "codsuministro" => $_GET['codsuministro'],
+    "referencia"    => $_GET['referencia'],
+    "tipodireccion" => $_GET['tipodireccion'],
+    "iddireccion"   => $_GET['iddireccion'],
+    "nrodireccion"  => $_GET['nrodireccion'],
+    "anexo"         => $_GET['anexo'],
+    "fechainicio"   => $_GET ['fechainicio'],
+    "fechatermino"  => $_GET['fechatermino'],
+    "diapago"       => $_GET['diapago']
+  ];
+
+  $contrato->registrarContrato($datos);
+}
 ?>

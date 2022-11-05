@@ -46,17 +46,17 @@
             <div class="row">
               <div class="form-group col-md-6">
                 <label for="recipient-name" class="col-form-label">N° del Cintillo</label>
-                <input type="text" class="form-control" id="txtNombresPersona" placeholder="Elian Corina">
+                <input type="text" class="form-control" id="txtCodCintillo">
               </div>
               <div class="form-group col-md-6">
                 <label for="recipient-name" class="col-form-label">N° del Suministro del Luz</label>
-                <input type="text" class="form-control" id="txtApellidosPersona" placeholder="Gutierres Tincusi">
+                <input type="text" class="form-control" id="txtNumSuministro" placeholder="Gutierres Tincusi">
               </div>
             </div>
             <div class="row">
               <div class="form-group col-md-12">
                 <label for="recipient-name" class="col-form-label">Referencia</label>
-                <input type="text" class="form-control" id="txtDniPersona" placeholder="70985557">
+                <input type="text" class="form-control" id="txtReferencia" placeholder="70985557">
               </div>
             </div>
             <div class="row">
@@ -73,33 +73,33 @@
                   </select>
                 </div>
                 <div class="col-sm-5">
-                  <input type="number" class="form-control" id="txtEmailPersona" placeholder="N° direccion..">
+                  <input type="number" class="form-control" id="txtNumDirecion" placeholder="N° direccion..">
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Anexo <i class="fas fa-envelope"></i> </label>
-                <input type="email" class="form-control" id="txtEmailPersona" placeholder="eliangutierrez525@gmail.com">
+                <input type="email" class="form-control" id="txtAnexo" placeholder="eliangutierrez525@gmail.com">
               </div>
             </div>
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Fecha Inicio </label>
-                  <input type="date" class="form-control" id="txtEmailPersona" placeholder="eliangutierrez525@gmail.com">
+                  <input type="date" class="form-control" id="txtfechInicio" placeholder="eliangutierrez525@gmail.com">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Fecha Termino</label>
-                  <input type="date" class="form-control" id="txtEmailPersona" placeholder="eliangutierrez525@gmail.com">
+                  <input type="date" class="form-control" id="txtFechTermino" placeholder="eliangutierrez525@gmail.com">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Dia de Pago</label>
-                  <input type="date" class="form-control" id="txtEmailPersona" placeholder="eliangutierrez525@gmail.com">
+                  <input type="date" class="form-control" id="txtDiaPago" placeholder="eliangutierrez525@gmail.com">
                 </div>
               </div>
             </div>
@@ -108,7 +108,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success btn-Guardar-Persona" data-dismiss="modal">Guardar</button>
+        <button type="button" class="btn btn-success btn-Guardar-Contrato">Guardar</button>
       </div>
     </div>
   </div>
@@ -116,3 +116,4 @@
 
 
 <script src="js/clientes.activos.sanmiguel.js"></script>
+<script src="js/contratos.js"></script>
