@@ -83,3 +83,36 @@ BEGIN
 		INNER JOIN distritos 	DIST	ON 	DIST.`iddistrito`  	= 	PERCLI.`iddistrito`
 		WHERE CLI.`estado` = '1';
 END $$
+
+-- -------------------------------------------------------------------------------------------------------------------------------------------------
+-- 					OPERACIONES
+-- -------------------------------------------------------------------------------------------------------------------------------------------------
+-- Registrar
+-- -----------------------------------------------------------------------
+DELIMITER $$
+CREATE PROCEDURE registrar_operaciones
+(
+IN _idcontrato 	    	INT,
+IN _idusuariotecnico 	INT,
+IN _tipooperacion	VARCHAR(50),
+IN _materialesretirados VARCHAR(500),
+IN _materialesusados	VARCHAR(500)
+)BEGIN
+INSERT INTO operaciones(idcontrato, idusuariotecnico, tipooperacion, materialesretirados, materialesusados)
+VALUES 	(_idcontrato, _idusuariotecnico, _tipooperacion, _materialesretirados, _materialesusados);
+END $$
+
+-- Listar
+-- ------------------------------------------------------------------------
+DELIMITER $$
+CREATE PROCEDURE listar_operaciones()
+BEGIN
+SELECT 	operaciones.`idoperacion`, operaciones.`idcontrato`, CONCAT(personas.`nombres`, ' ', personas.`apellidos`)AS 'tecnico', usuarios.`rol`,
+	operaciones.`tipooperacion`, operaciones.`fechahora`, operaciones.`materialesretirados`,
+	operaciones.`materialesusados`	
+FROM operaciones
+INNER JOIN  usuarios 	ON  usuarios.`idusuario` = operaciones.`idusuariotecnico`
+INNER JOIN  personas 	ON  personas.`idpersona` = usuarios.`idpersona`;
+END $$
+
+CALL listar_operaciones()

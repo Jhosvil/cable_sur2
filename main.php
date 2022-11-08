@@ -198,6 +198,12 @@ require_once 'views/acceso-seguro.php';
               <p>Direcciones</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="main.php?view=operaciones" class="nav-link">
+              <i class="nav-icon fas fa-user-circle"></i>
+              <p>Operaciones</p>
+            </a>
+          </li>
 
            <!-- Opciones personalizadas -->
            <li class="nav-item">

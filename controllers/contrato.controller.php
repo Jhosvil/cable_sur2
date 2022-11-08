@@ -31,6 +31,9 @@ if (isset($_GET['operacion'])) {
               <button id='btnImprimirContrato' data-idcontrato = '{$registro->idcontrato}' title='Imprimir Contrato' type='button' class='btn btn-danger'>
                 <i class='nav-icon fas fa-file-pdf'></i>
               </button>
+              <button id='btnOperacion' data-idcontrato = '{$registro->idcontrato}' title='Operaciones' type='button' class='btn btn-success' data-toggle='modal' data-target='#modalRegistrarOperacion' data-whatever='@mdo'>
+                <i class='fas fa-file-signature'></i>
+              </button>
             </td>
           </tr>
         ";
