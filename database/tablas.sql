@@ -92,8 +92,8 @@ iddireccion	INT 		NOT NULL,	-- FK
 numerodireccion INT 		NULL,
 anexo		INT 		NULL,
 fechainicio 	DATE 		NOT NULL DEFAULT NOW(),
-fechatermino 	DATE 		NOT NULL,
-diapago 	DATE 		NOT NULL,
+fechatermino 	DATE 		NULL,
+diapago 	INT 		NOT NULL,
 
 CONSTRAINT fk_idcliente_cont FOREIGN KEY (idcliente) REFERENCES clientes (idcliente),
 CONSTRAINT fk_idplan_cont FOREIGN KEY (idplan) REFERENCES planes (idplan),
@@ -122,13 +122,13 @@ CONSTRAINT fk_idusuariotecnico_ope FOREIGN KEY (idusuariotecnico)REFERENCES usua
 /*
 ************* PAGOS ******************************
 */
-DROP TABLE pagos
+CREATE TABLE pagos
 (
 idpago 			INT 		AUTO_INCREMENT 		PRIMARY KEY,
 idcontrato 		INT 		NOT NULL, 	-- FK
 añopago 		SMALLINT 	NOT NULL,
 mespago 		TINYINT 	NOT NULL,
-netopagar 		DECIMAL(2,2) 	NOT NULL,
+netopagar 		DECIMAL(6,2) 	NOT NULL,
 fechapago 		DATE 		NOT NULL 	DEFAULT NOW(),
 idusuarioregistro 	INT 		NOT NULL, 	-- FK
 

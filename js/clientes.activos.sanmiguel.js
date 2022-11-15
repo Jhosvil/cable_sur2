@@ -81,7 +81,6 @@ $(".btn-Guardar-Contrato").on("click", function(){
   let NumDirecion   = $("#txtNumDirecion").val();
   let Anexo         = $("#txtAnexo").val();
   let fechInicio    = $("#txtfechInicio").val();
-  let fechTermino   = $("#txtFechTermino").val();
   let diapago       = $("#txtDiaPago").val();
 
   if (codcintillo == "") {
@@ -96,8 +95,6 @@ $(".btn-Guardar-Contrato").on("click", function(){
     alert("Por favor ingrese el anexo");
   }else if (fechInicio == ""){
     alert("Por favor ingresar la fecha de inicio");
-  }else if(fechTermino == ""){
-    alert("Por favor ingrese la fecha de termino");
   }else if(diapago == ""){
     alert("Por favor ingrese el dia de pago");
   }
@@ -113,7 +110,6 @@ $(".btn-Guardar-Contrato").on("click", function(){
     'nrodireccion'  : NumDirecion,
     'anexo'         : Anexo,
     'fechainicio'   : fechInicio,
-    'fechatermino'  : fechTermino,
     'diapago'       : diapago
   }
   $.ajax({

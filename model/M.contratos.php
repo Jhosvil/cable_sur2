@@ -17,11 +17,21 @@ class Contrato extends ModelMaster
 
   }
 
-  //LISTAR CONTRATOS
+  //LISTAR CONTRATOS VIGENTES
   public function listarContratos()
   {
     try {
       return parent::getRows("listar_Contratos", true);
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
+  // LISTAR CONTRATOS NO VIGENTES
+  public function listarContratosInactivos()
+  {
+    try {
+      return parent::getRows("listar_Contratos_Incativos", true);
     } catch (Exception $e) {
       die($e->getMessage());
     }
@@ -36,6 +46,17 @@ class Contrato extends ModelMaster
       die($e->getMessage());
     }
 
+  }
+
+  // CULMINAR UN CONTRATO
+  public function culminarContrato($idContrato)
+  {
+    try {
+      parent::execProcedure($idContrato, "culminar_contrato", false);
+    } catch (Exception $e) {
+      die ($e->getMessage());
+      //throw $th;
+    }
   }
 }
 

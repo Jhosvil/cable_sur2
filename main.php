@@ -160,7 +160,7 @@ require_once 'views/acceso-seguro.php';
                 </a>
               </li>
               <li class="nav-item">
-                <a href="main.php?view=planes-inactivos" class="nav-link">
+                <a href="main.php?view=contratos-inactivos" class="nav-link">
                 <i class="nav-icon fas fa-search-location"></i>
                   <p>Inactivos</p>
                 </a>

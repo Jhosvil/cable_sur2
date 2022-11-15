@@ -1,7 +1,7 @@
 <div class="container pt-3">
   <div class="row">
     <div class="col-md-6">
-      <h3>Lista de Contratos</h3>
+      <h3>Lista de Contratos Vigentes</h3>
     </div>
   </div>
   <div class="row">

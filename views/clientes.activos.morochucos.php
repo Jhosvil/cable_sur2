@@ -85,20 +85,14 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Fecha Inicio </label>
+                  <label for="recipient-name" class="col-form-label">Fecha Inicio</label>
                   <input type="date" class="form-control" id="txtfechInicio" placeholder="eliangutierrez525@gmail.com">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Fecha Termino</label>
-                  <input type="date" class="form-control" id="txtFechTermino" placeholder="eliangutierrez525@gmail.com">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Dia de Pago</label>
-                  <input type="date" class="form-control" id="txtDiaPago" placeholder="eliangutierrez525@gmail.com">
+                  <input type="number" class="form-control" id="txtDiaPago">
                 </div>
               </div>
             </div>

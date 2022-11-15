@@ -3,7 +3,6 @@ var idcontrato = "";
 // CAPTURAMOS EL ID DEL CONTRATO
 $("#tabla-contratos").on("click", "#btnOperacion", function() {
     idcontrato = $(this).attr("data-idcontrato");
-    alert(idcontrato);
 });
 
 // CREAMOS UN EVENTO CLICK PARA MADAR LOS DATOS POR EL AJAX AL CONTROLADOR
