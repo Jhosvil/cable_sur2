@@ -23,22 +23,22 @@ DROP TABLE IF EXISTS `clientes`;
 CREATE TABLE `clientes` (
   `idcliente` int(11) NOT NULL AUTO_INCREMENT,
   `idpersona` int(11) NOT NULL,
-  `direccion` varchar(100) NOT NULL,
-  `referencia` varchar(300) NOT NULL,
-  `fecharegistro` date NOT NULL,
+  `fecharegistro` date NOT NULL DEFAULT current_timestamp(),
+  `fechadesabilitado` date DEFAULT NULL,
+  `estado` int(11) NOT NULL DEFAULT 1,
   `idusuarioregistro` int(11) NOT NULL,
   PRIMARY KEY (`idcliente`),
   KEY `fk_idpersona_cli` (`idpersona`),
   KEY `fk_idusuarioregistro_cli` (`idusuarioregistro`),
   CONSTRAINT `fk_idpersona_cli` FOREIGN KEY (`idpersona`) REFERENCES `personas` (`idpersona`),
   CONSTRAINT `fk_idusuarioregistro_cli` FOREIGN KEY (`idusuarioregistro`) REFERENCES `usuarios` (`idusuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `clientes` */
 
 LOCK TABLES `clientes` WRITE;
 
-insert  into `clientes`(`idcliente`,`idpersona`,`direccion`,`referencia`,`fecharegistro`,`idusuarioregistro`) values (1,3,'capillapampa','costado de la iglesia la morenita de capillapampa','2022-09-19',1),(2,4,'san miguel','costado del grass neymar y messi','2022-09-19',2);
+insert  into `clientes`(`idcliente`,`idpersona`,`fecharegistro`,`fechadesabilitado`,`estado`,`idusuarioregistro`) values (1,2,'2022-10-25',NULL,1,1),(2,6,'2022-10-25','2022-10-25',0,1),(3,6,'2022-10-25','2022-10-25',0,1),(4,5,'2022-10-25',NULL,1,1),(5,6,'2022-11-02',NULL,1,1),(6,4,'2022-11-04',NULL,1,1);
 
 UNLOCK TABLES;
 
@@ -48,25 +48,32 @@ DROP TABLE IF EXISTS `contratos`;
 
 CREATE TABLE `contratos` (
   `idcontrato` int(11) NOT NULL AUTO_INCREMENT,
-  `codigo` int(11) NOT NULL,
   `idcliente` int(11) NOT NULL,
   `idplan` int(11) NOT NULL,
+  `codcintillo` int(11) NOT NULL,
+  `codsuministro` char(8) NOT NULL,
+  `referencia` varchar(100) DEFAULT NULL,
+  `tipodireccion` varchar(50) NOT NULL,
+  `iddireccion` int(11) NOT NULL,
+  `numerodireccion` int(11) DEFAULT NULL,
   `anexo` int(11) DEFAULT NULL,
-  `fechainicio` date NOT NULL,
+  `fechainicio` date NOT NULL DEFAULT current_timestamp(),
   `fechatermino` date DEFAULT NULL,
-  `diapago` date DEFAULT NULL,
+  `diapago` int(11) NOT NULL,
   PRIMARY KEY (`idcontrato`),
   KEY `fk_idcliente_cont` (`idcliente`),
   KEY `fk_idplan_cont` (`idplan`),
+  KEY `fk_iddireccion_cont` (`iddireccion`),
   CONSTRAINT `fk_idcliente_cont` FOREIGN KEY (`idcliente`) REFERENCES `clientes` (`idcliente`),
+  CONSTRAINT `fk_iddireccion_cont` FOREIGN KEY (`iddireccion`) REFERENCES `direcciones` (`iddireccion`),
   CONSTRAINT `fk_idplan_cont` FOREIGN KEY (`idplan`) REFERENCES `planes` (`idplan`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `contratos` */
 
 LOCK TABLES `contratos` WRITE;
 
-insert  into `contratos`(`idcontrato`,`codigo`,`idcliente`,`idplan`,`anexo`,`fechainicio`,`fechatermino`,`diapago`) values (1,1,2,1,1,'2022-09-21','2022-09-30','2022-10-01'),(2,2,1,2,0,'2022-09-21','2022-09-30','2022-10-01');
+insert  into `contratos`(`idcontrato`,`idcliente`,`idplan`,`codcintillo`,`codsuministro`,`referencia`,`tipodireccion`,`iddireccion`,`numerodireccion`,`anexo`,`fechainicio`,`fechatermino`,`diapago`) values (1,1,1,1234,'1234567','Por la plaza principal','Av',4,300,1,'2022-11-08','2022-11-08',30),(4,1,1,123456,'12345678','Al costado de peluqueria','AV',2,200,0,'2022-11-08','2022-11-08',30),(5,6,1,5621,'98765','costado del mercado','Jr',5,200,0,'2022-11-10','2022-11-08',30),(6,4,2,5621,'1234567','Por la plaza principal','Av',7,33,0,'2022-11-08',NULL,30);
 
 UNLOCK TABLES;
 
@@ -85,6 +92,25 @@ CREATE TABLE `departamentos` (
 LOCK TABLES `departamentos` WRITE;
 
 insert  into `departamentos`(`iddepartamento`,`nombredepartamento`) values ('01','Amazonas'),('02','Áncash'),('03','Apurímac'),('04','Arequipa'),('05','Ayacucho'),('06','Cajamarca'),('07','Callao'),('08','Cusco'),('09','Huancavelica'),('10','Huánuco'),('11','Ica'),('12','Junín'),('13','La Libertad'),('14','Lambayeque'),('15','Lima'),('16','Loreto'),('17','Madre de Dios'),('18','Moquegua'),('19','Pasco'),('20','Piura'),('21','Puno'),('22','San Martín'),('23','Tacna'),('24','Tumbes'),('25','Ucayali');
+
+UNLOCK TABLES;
+
+/*Table structure for table `direcciones` */
+
+DROP TABLE IF EXISTS `direcciones`;
+
+CREATE TABLE `direcciones` (
+  `iddireccion` int(11) NOT NULL AUTO_INCREMENT,
+  `direccion` varchar(50) NOT NULL,
+  `estado` int(11) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`iddireccion`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `direcciones` */
+
+LOCK TABLES `direcciones` WRITE;
+
+insert  into `direcciones`(`iddireccion`,`direccion`,`estado`) values (1,'micaela bastidas',0),(2,'Manco Capac',1),(3,'Ramon Castilla',1),(4,'Micaela Bastidas',1),(5,'Wari',1),(6,'Francisco Pizarro',1),(7,'Quinuapata',1),(8,'San juan Bautista',1),(9,'Miguel Grau',1),(10,'Alfonso Ugarte',1),(11,'Los Andes',1);
 
 UNLOCK TABLES;
 
@@ -109,25 +135,56 @@ insert  into `distritos`(`iddistrito`,`nombredistrito`,`idprovincia`) values ('0
 
 UNLOCK TABLES;
 
+/*Table structure for table `pagos` */
+
+DROP TABLE IF EXISTS `pagos`;
+
+CREATE TABLE `pagos` (
+  `idpago` int(11) NOT NULL AUTO_INCREMENT,
+  `idcontrato` int(11) NOT NULL,
+  `anopago` smallint(6) NOT NULL,
+  `mespago` tinyint(4) NOT NULL,
+  `netopagar` decimal(6,2) NOT NULL,
+  `fechapago` date NOT NULL DEFAULT current_timestamp(),
+  `idusuarioregistro` int(11) NOT NULL,
+  PRIMARY KEY (`idpago`),
+  KEY `fk_idcontrato_pag` (`idcontrato`),
+  KEY `fk_idusuarioregistro_pag` (`idusuarioregistro`),
+  CONSTRAINT `fk_idcontrato_pag` FOREIGN KEY (`idcontrato`) REFERENCES `contratos` (`idcontrato`),
+  CONSTRAINT `fk_idusuarioregistro_pag` FOREIGN KEY (`idusuarioregistro`) REFERENCES `usuarios` (`idusuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `pagos` */
+
+LOCK TABLES `pagos` WRITE;
+
+insert  into `pagos`(`idpago`,`idcontrato`,`anopago`,`mespago`,`netopagar`,`fechapago`,`idusuarioregistro`) values (1,6,2022,5,50.00,'2022-11-15',1),(2,6,2022,7,50.00,'2022-11-15',1);
+
+UNLOCK TABLES;
+
 /*Table structure for table `personas` */
 
 DROP TABLE IF EXISTS `personas`;
 
 CREATE TABLE `personas` (
   `idpersona` int(11) NOT NULL AUTO_INCREMENT,
+  `iddistrito` varchar(6) NOT NULL,
   `nombres` varchar(50) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `dni` char(8) NOT NULL,
   `telefono` char(11) NOT NULL,
   `email` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`idpersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`idpersona`),
+  UNIQUE KEY `uk_usu_idpersona` (`idpersona`),
+  KEY `fk_iddistrito_per` (`iddistrito`),
+  CONSTRAINT `fk_iddistrito_per` FOREIGN KEY (`iddistrito`) REFERENCES `distritos` (`iddistrito`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `personas` */
 
 LOCK TABLES `personas` WRITE;
 
-insert  into `personas`(`idpersona`,`nombres`,`apellidos`,`dni`,`telefono`,`email`) values (1,'Smith Jhosvil','Morales Jeri','71944332','921090112','smithjhosvil@gmail.com'),(2,'Elian Corina','Gutierres Tincusi','70985557','973045762','corina@gmail.com'),(3,'Aurelio','Morales Quispe','12345678','996203104','aurelio@gmail.com'),(4,'Vilma','Jeri Palomina','87654321','987654123','vilma@gmail.com');
+insert  into `personas`(`idpersona`,`iddistrito`,`nombres`,`apellidos`,`dni`,`telefono`,`email`) values (1,'050501','Smith','Morales Jeri','12345679','123456789','el_leder@gmail.com'),(2,'050501','Elian Corina','Gutierrez Tincusi','70985557','123456789',NULL),(3,'050501','Sulca','Gutierrez Tincusi','70985557','97354123',''),(4,'050501','Maria','La del Barrio','70985557','97354123',NULL),(5,'050501','Paloma','Fiuza','70985557','97354123',NULL),(6,'050203','Antonia','Vila Quipe','70985557','97354123',NULL),(7,'050501','Luis Angel','Mosco Salvatierra','72630038','936246820','moscosalvatierra@gmail.com'),(8,'050503','aa','adsa','516541','455',NULL),(9,'050503','a','adsa','516541','455',NULL),(10,'050503','b','adsa','516541','455',NULL),(11,'050503','c','adsa','516541','455',NULL);
 
 UNLOCK TABLES;
 
@@ -139,15 +196,16 @@ CREATE TABLE `planes` (
   `idplan` int(11) NOT NULL AUTO_INCREMENT,
   `nombreplan` varchar(50) NOT NULL,
   `descripcion` varchar(100) NOT NULL,
-  `precio` decimal(4,2) NOT NULL,
+  `precio` decimal(6,2) NOT NULL,
+  `estado` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`idplan`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `planes` */
 
 LOCK TABLES `planes` WRITE;
 
-insert  into `planes`(`idplan`,`nombreplan`,`descripcion`,`precio`) values (1,'nivel 1','validos para un tv',25.00),(2,'nivel 2','validos para 2 tv',30.00),(3,'nivel 3','validos para 3 tv',35.00);
+insert  into `planes`(`idplan`,`nombreplan`,`descripcion`,`precio`,`estado`) values (1,'familiar','para 5 televisores',120.00,1),(2,'basico','para 2 televisores',50.00,1);
 
 UNLOCK TABLES;
 
@@ -180,13 +238,13 @@ CREATE TABLE `usuarios` (
   `idusuario` int(11) NOT NULL AUTO_INCREMENT,
   `idpersona` int(11) NOT NULL,
   `nombreusuario` varchar(50) NOT NULL,
-  `claveacceso` varchar(50) NOT NULL,
+  `claveacceso` varchar(200) NOT NULL,
   `rol` varchar(50) NOT NULL,
-  `fecharegistro` datetime NOT NULL,
+  `fecharegistro` datetime NOT NULL DEFAULT current_timestamp(),
   `fechabaja` datetime DEFAULT NULL,
   `estado` char(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`idusuario`),
-  KEY `fk_idpersona_usu` (`idpersona`),
+  UNIQUE KEY `uk_usu_idpersona` (`idpersona`),
   CONSTRAINT `fk_idpersona_usu` FOREIGN KEY (`idpersona`) REFERENCES `personas` (`idpersona`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
@@ -194,9 +252,724 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 
-insert  into `usuarios`(`idusuario`,`idpersona`,`nombreusuario`,`claveacceso`,`rol`,`fecharegistro`,`fechabaja`,`estado`) values (1,1,'smith12','123','administrador','2022-09-19 20:00:11',NULL,'1'),(2,2,'corina12','123','administrador','2022-09-19 20:01:22',NULL,'1');
+insert  into `usuarios`(`idusuario`,`idpersona`,`nombreusuario`,`claveacceso`,`rol`,`fecharegistro`,`fechabaja`,`estado`) values (1,1,'smith12','$2y$10$BvMvL.Us6KO8ww.ne.Kcme5XNvjXG6GUXWCEjLQR5AkF9tDGRsxPm','Administrador','2022-10-19 22:47:35',NULL,'1'),(2,3,'sulca12','$2y$10$zDmgc/c.XGPT7h4ainrNgejLP6wCMLZYuJ7pJsmLjdItN159rS4H2','Cobrador','2022-10-28 17:22:41','2022-10-28 17:23:26','0');
 
 UNLOCK TABLES;
+
+/* Procedure structure for procedure `culminar_contrato` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `culminar_contrato` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `culminar_contrato`(
+in _idcontrato int
+)
+begin
+update contratos set fechatermino = now() where idcontrato = _idcontrato;
+end */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `eliminar_planes` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `eliminar_planes` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_planes`(
+IN _idplan INT 
+)
+BEGIN
+	UPDATE planes SET estado = '0' WHERE idplan = _idplan;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `habilitar_clientes` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `habilitar_clientes` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `habilitar_clientes`(
+ IN _idcliente INT,
+ IN _idusuarioregistro INT
+)
+BEGIN
+	UPDATE clientes SET estado = '1', fechadesabilitado = NULL, idusuarioregistro = _idusuarioregistro
+	WHERE idcliente = _idcliente;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `habilitar_planes` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `habilitar_planes` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `habilitar_planes`(
+IN _idplan INT 
+)
+BEGIN
+	UPDATE planes SET estado = '1' WHERE idplan = _idplan;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `habilitar_usuarios` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `habilitar_usuarios` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `habilitar_usuarios`(
+ IN _idusuario INT
+)
+BEGIN
+	UPDATE usuarios SET estado = '1', fechabaja = NULL
+	WHERE idusuario = _idusuario;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `inabilitar_clientes` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `inabilitar_clientes` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `inabilitar_clientes`(
+ IN _idcliente INT,
+ IN _idusuarioregistro INT
+)
+BEGIN
+	UPDATE clientes SET estado = '0', fechadesabilitado = NOW(), idusuarioregistro = _idusuarioregistro
+	WHERE idcliente = _idcliente;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `inabilitar_usuarios` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `inabilitar_usuarios` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `inabilitar_usuarios`(
+ IN _idusuario INT
+)
+BEGIN
+	UPDATE usuarios SET estado = '0', fechabaja = NOW()
+	WHERE idusuario = _idusuario;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_acreedores` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_acreedores` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_acreedores`(
+in _mespago tinyint(4)
+)
+begin
+	SELECT  PAG.`idpago`,PERCLI.`nombres` AS 'nomCli', PERCLI.`apellidos` AS 'apeCli', 
+		CONCAT(CONTR.`tipodireccion`,' ', DIR.`direccion`,' ', CONTR.`numerodireccion`)AS 'dirreccionCli',
+		PERCLI.`dni` AS 'dniCli', CLIEN.`idcliente`, CONCAT(PAG.`mespago`, ' - ', PAG.`añopago`)AS 'mespago',
+		PAG.`netopagar`, PAG.`fechapago`, PERUSU.`nombres` AS 'nomUsu', PERUSU.`apellidos` AS 'apeUsu', CONTR.`diapago`
+		
+	FROM pagos PAG
+	INNER JOIN contratos CONTR 	ON CONTR.`idcontrato` 	= PAG.`idcontrato`
+	INNER JOIN direcciones DIR 	ON DIR.`iddireccion`	= CONTR.`iddireccion`
+	INNER JOIN clientes CLIEN 	ON CLIEN.`idcliente` 	= CONTR.`idcliente`
+	INNER JOIN personas PERCLI	ON PERCLI.`idpersona` 	= CLIEN.`idpersona`
+	INNER JOIN usuarios USU 	ON USU.`idusuario` 	= PAG.`idusuarioregistro`
+	INNER JOIN personas PERUSU 	ON PERUSU.`idpersona`	= USU.`idpersona`
+	where PAG.`mespago` = _mespago;
+end */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_cliente_morochuco` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_cliente_morochuco` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_cliente_morochuco`()
+BEGIN
+SELECT 	clientes.`idcliente`,
+	perC.apellidos AS 'apecliente', perC.nombres AS 'nomcliente', perC.dni,
+	perU.apellidos AS 'apeusuario', perU.nombres AS 'nomusuario',
+	clientes.`fecharegistro`
+	FROM clientes
+	INNER JOIN personas perC ON perC.idpersona = clientes.`idpersona`
+	INNER JOIN usuarios ON usuarios.`idusuario` = clientes.`idusuarioregistro`
+	INNER JOIN personas perU ON perU.idpersona = usuarios.`idpersona`
+	WHERE perC.`iddistrito` = '050203' AND clientes.`estado`= '1'; -- distrito Los Morochucos
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_cliente_san_miguel` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_cliente_san_miguel` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_cliente_san_miguel`()
+BEGIN
+SELECT 	clientes.`idcliente`,
+	perC.apellidos AS 'apecliente', perC.nombres AS 'nomcliente', perC.dni,
+	perU.apellidos AS 'apeusuario', perU.nombres AS 'nomusuario',
+	clientes.`fecharegistro`
+	FROM clientes
+	INNER JOIN personas perC ON perC.idpersona = clientes.`idpersona`
+	INNER JOIN usuarios ON usuarios.`idusuario` = clientes.`idusuarioregistro`
+	INNER JOIN personas perU ON perU.idpersona = usuarios.`idpersona`
+	WHERE perC.`iddistrito` = '050501' AND clientes.`estado`= '1'; -- San Miguel
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_Contratos` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_Contratos` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_Contratos`()
+BEGIN
+	SELECT  	CONTR.`idcontrato`, DIST.`nombredistrito` AS 'distritoCli',
+			PERCLI.`apellidos` AS 'apellidoCli', PERCLI.`nombres` AS 'nombreCli', PERCLI.`dni` AS 'dniCli', 
+			PERCLI.`telefono` AS 'telefonoCli', PERCLI.`email` AS 'emailCli', USU.`rol` AS 'rolUsu',
+			PERUSU.`nombres` AS 'nombresUsu', PERUSU.`apellidos` AS 'apellidoUsu', PERUSU.`dni` AS 'dniUsu',
+			PERUSU.`telefono` AS 'telefonoUsu', PERUSU.`email` AS 'emailUsu',
+			CONCAT(CONTR.`tipodireccion`,' ',DIR.`direccion`,' N° ',CONTR.`numerodireccion`)AS 'direccliente',
+			PLAN.`nombreplan`, PLAN.`descripcion`, PLAN.`precio`,  
+			CONTR.`codcintillo`, CONTR.`referencia`, CONTR.`anexo`, CONTR.`fechainicio`, CONTR.`fechatermino`, CONTR.`diapago`
+		FROM contratos CONTR
+		INNER JOIN clientes 	CLI 	ON 	CLI.`idcliente`   	= 	CONTR.`idcliente`
+		INNER JOIN personas	PERCLI  ON 	PERCLI.`idpersona` 	=  	CLI.`idpersona`
+		INNER JOIN planes 	PLAN 	ON 	PLAN.`idplan` 	 	= 	CONTR.`idplan`
+		INNER JOIN direcciones 	DIR 	ON 	DIR.`iddireccion` 	= 	CONTR.`iddireccion`
+		INNER JOIN usuarios 	USU	ON 	USU.`idusuario` 	= 	CLI.`idusuarioregistro`
+		INNER JOIN personas 	PERUSU 	ON 	PERUSU.idpersona 	= 	USU.`idpersona`
+		INNER JOIN distritos 	DIST	ON 	DIST.`iddistrito`  	= 	PERCLI.`iddistrito`
+		WHERE CLI.`estado` = '1' and  CONTR.`fechatermino` IS NULL;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_Contratos_Incativos` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_Contratos_Incativos` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_Contratos_Incativos`()
+BEGIN
+	SELECT  	CONTR.`idcontrato`, DIST.`nombredistrito` AS 'distritoCli',
+			PERCLI.`apellidos` AS 'apellidoCli', PERCLI.`nombres` AS 'nombreCli', PERCLI.`dni` AS 'dniCli', 
+			PERCLI.`telefono` AS 'telefonoCli', PERCLI.`email` AS 'emailCli', USU.`rol` AS 'rolUsu',
+			PERUSU.`nombres` AS 'nombresUsu', PERUSU.`apellidos` AS 'apellidoUsu', PERUSU.`dni` AS 'dniUsu',
+			PERUSU.`telefono` AS 'telefonoUsu', PERUSU.`email` AS 'emailUsu',
+			CONCAT(CONTR.`tipodireccion`,' ',DIR.`direccion`,' N° ',CONTR.`numerodireccion`)AS 'direccliente',
+			PLAN.`nombreplan`, PLAN.`descripcion`, PLAN.`precio`,  
+			CONTR.`codcintillo`, CONTR.`referencia`, CONTR.`anexo`, CONTR.`fechainicio`, CONTR.`fechatermino`, CONTR.`diapago`
+		FROM contratos CONTR
+		INNER JOIN clientes 	CLI 	ON 	CLI.`idcliente`   	= 	CONTR.`idcliente`
+		INNER JOIN personas	PERCLI  ON 	PERCLI.`idpersona` 	=  	CLI.`idpersona`
+		INNER JOIN planes 	PLAN 	ON 	PLAN.`idplan` 	 	= 	CONTR.`idplan`
+		INNER JOIN direcciones 	DIR 	ON 	DIR.`iddireccion` 	= 	CONTR.`iddireccion`
+		INNER JOIN usuarios 	USU	ON 	USU.`idusuario` 	= 	CLI.`idusuarioregistro`
+		INNER JOIN personas 	PERUSU 	ON 	PERUSU.idpersona 	= 	USU.`idpersona`
+		INNER JOIN distritos 	DIST	ON 	DIST.`iddistrito`  	= 	PERCLI.`iddistrito`
+		WHERE CLI.`estado` = '1' AND  CONTR.`fechatermino` IS Not null;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_departamentos` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_departamentos` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_departamentos`()
+BEGIN
+SELECT * FROM departamentos;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_distritos` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_distritos` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_distritos`(
+IN _idprovincia VARCHAR(4)
+)
+BEGIN
+ SELECT * FROM distritos WHERE idprovincia = _idprovincia ORDER BY iddistrito;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_one_dato_persona` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_one_dato_persona` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_one_dato_persona`(
+IN _idpersona INT
+)
+BEGIN
+ SELECT * FROM personas WHERE idpersona = _idpersona;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_one_usuario` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_one_usuario` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_one_usuario`(
+  IN _idusuario INT
+)
+BEGIN
+SELECT * FROM usuarios WHERE idusuario = _idusuario AND estado = '1';
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_operaciones` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_operaciones` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_operaciones`()
+BEGIN
+SELECT 	operaciones.`idoperacion`, operaciones.`idcontrato`, concat(personas.`nombres`, ' ', personas.`apellidos`)as 'tecnico', usuarios.`rol`,
+	operaciones.`tipooperacion`, operaciones.`fechahora`, operaciones.`materialesretirados`,
+	operaciones.`materialesusados`	
+FROM operaciones
+INNER JOIN  usuarios 	ON  usuarios.`idusuario` = operaciones.`idusuariotecnico`
+INNER JOIN  personas 	ON  personas.`idpersona` = usuarios.`idpersona`;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_pagos` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_pagos` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_pagos`()
+BEGIN
+	SELECT  PAG.`idpago`,PERCLI.`nombres` AS 'nomCli', PERCLI.`apellidos` AS 'apeCli', 
+		CONCAT(CONTR.`tipodireccion`,' ', DIR.`direccion`,' ', CONTR.`numerodireccion`)AS 'dirreccionCli',
+		PERCLI.`dni` AS 'dniCli', CLIEN.`idcliente`, CONCAT(PAG.`mespago`, ' - ', PAG.`anopago`)AS 'mespago',
+		PAG.`netopagar`, PAG.`fechapago`, PERUSU.`nombres` AS 'nomUsu', PERUSU.`apellidos` AS 'apeUsu', CONTR.`diapago`
+		
+	FROM pagos PAG
+	INNER JOIN contratos 	CONTR 	ON CONTR.`idcontrato` 	= PAG.`idcontrato`
+	INNER JOIN direcciones 	DIR 	ON DIR.`iddireccion`	= CONTR.`iddireccion`
+	INNER JOIN clientes 	CLIEN 	ON CLIEN.`idcliente` 	= CONTR.`idcliente`
+	INNER JOIN personas 	PERCLI	ON PERCLI.`idpersona` 	= CLIEN.`idpersona`
+	INNER JOIN usuarios 	USU 	ON USU.`idusuario` 	= PAG.`idusuarioregistro`
+	INNER JOIN personas 	PERUSU 	ON PERUSU.`idpersona`	= USU.`idpersona`;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_personas` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_personas` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_personas`()
+BEGIN
+ SELECT personas.`idpersona`, distritos.`nombredistrito`, personas.`nombres`, personas.`apellidos`, 
+	personas.`dni`, personas.`telefono`, personas.`email` 
+ FROM personas 
+ INNER JOIN distritos
+ WHERE distritos.`iddistrito` = personas.`iddistrito`
+ ORDER BY idpersona DESC;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_planes_activos` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_planes_activos` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_planes_activos`()
+BEGIN
+	SELECT * FROM planes WHERE estado = '1' ; 
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_planes_inactivos` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_planes_inactivos` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_planes_inactivos`()
+BEGIN
+	SELECT * FROM planes WHERE estado = '0';
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_provincias` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_provincias` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_provincias`(
+IN _iddepartamento VARCHAR(2)
+)
+BEGIN
+SELECT * FROM provincias WHERE iddepartamento = _iddepartamento ORDER BY idprovincia;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_un_contrato` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_un_contrato` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_un_contrato`(
+IN _idcontrato INT
+)
+BEGIN
+	SELECT  DIST.`nombredistrito` AS 'distritoCli',
+		PERCLI.`apellidos` AS 'apellidoCli', PERCLI.`nombres` AS 'nombreCli', PERCLI.`dni` AS 'dniCli', 
+		PERCLI.`telefono` AS 'telefonoCli', PERCLI.`email` AS 'emailCli', USU.`rol` AS 'rolUsu',
+		PERUSU.`nombres` AS 'nombresUsu', PERUSU.`apellidos` AS 'apellidoUsu', PERUSU.`dni` AS 'dniUsu',
+		PERUSU.`telefono` AS 'telefonoUsu', PERUSU.`email` AS 'emailUsu',
+		CONCAT(CONTR.`tipodireccion`,' ',DIR.`direccion`,' N° ',CONTR.`numerodireccion`)AS 'direccliente',
+		PLAN.`nombreplan`, PLAN.`descripcion`, PLAN.`precio`,  
+		CONTR.`codcintillo`, CONTR.`referencia`, CONTR.`anexo`, CONTR.`fechainicio`, CONTR.`fechatermino`, CONTR.`diapago`
+	FROM contratos CONTR
+	INNER JOIN clientes 	CLI 	ON 	CLI.`idcliente`   	= 	CONTR.`idcliente`
+	INNER JOIN personas	PERCLI  ON 	PERCLI.`idpersona` 	=  	CLI.`idpersona`
+	INNER JOIN planes 	PLAN 	ON 	PLAN.`idplan` 	 	= 	CONTR.`idplan`
+	INNER JOIN direcciones 	DIR 	ON 	DIR.`iddireccion` 	= 	CONTR.`iddireccion`
+	INNER JOIN usuarios 	USU	ON 	USU.`idusuario` 	= 	CLI.`idusuarioregistro`
+	INNER JOIN personas 	PERUSU 	ON 	PERUSU.idpersona 	= 	USU.`idpersona`
+	INNER JOIN distritos 	DIST	ON 	DIST.`iddistrito`  	= 	PERCLI.`iddistrito`
+	WHERE CLI.`estado` = '1'    AND  CONTR.`idcontrato` = _idcontrato;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_un_plan` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_un_plan` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_un_plan`(
+IN _idplan INT
+)
+BEGIN
+	SELECT * FROM planes WHERE idplan = _idplan;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_usuarios_activos` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_usuarios_activos` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_usuarios_activos`()
+BEGIN
+ SELECT usuarios.`idusuario`, usuarios.`nombreusuario`, usuarios.`claveacceso`,
+	usuarios.`rol`, usuarios.`fecharegistro`, personas.`nombres`, personas.`apellidos`,
+	personas.`dni`, personas.`telefono`, personas.`email`
+  FROM usuarios
+ INNER JOIN personas
+ ON usuarios.`idpersona` = personas.`idpersona` 
+ AND usuarios.`estado` = '1';
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_usuarios_inactivos` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_usuarios_inactivos` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_usuarios_inactivos`()
+BEGIN
+ SELECT usuarios.`idusuario`, usuarios.`nombreusuario`, usuarios.`claveacceso`,
+	usuarios.`rol`, usuarios.`fecharegistro`, usuarios.`fechabaja`, personas.`nombres`, personas.`apellidos`,
+	personas.`dni`, personas.`telefono`, personas.`email`
+  FROM usuarios
+ INNER JOIN personas
+ ON usuarios.`idpersona` = personas.`idpersona` 
+ AND usuarios.`estado` = '0';
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `modificarUsuario` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `modificarUsuario` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarUsuario`(
+ IN _idusuario INT,
+ IN _rol	VARCHAR(50)
+)
+BEGIN
+ UPDATE usuarios SET rol = _rol WHERE idusuario = _idusuario;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `modificar_personas` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `modificar_personas` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `modificar_personas`(
+IN 	_idpersona 	INT,
+IN 	_nombres 	VARCHAR(50),
+IN 	_apellidos 	VARCHAR(50),
+IN 	_dni 		CHAR(8),
+IN 	_telefono 	CHAR(11),
+IN 	_email 		VARCHAR(50)
+)
+BEGIN
+UPDATE personas SET
+	nombres 	= 	_nombres,
+	apellidos 	= 	_apellidos,
+	dni 		= 	_dni,
+	telefono 	= 	_telefono,
+	email 		= 	_email
+	
+	WHERE idpersona = _idpersona;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `modificar_plan` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `modificar_plan` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `modificar_plan`(
+IN _idplan	INT,
+IN _nombreplan	VARCHAR(50),
+IN _descripcion	VARCHAR(50),
+IN _precio	DECIMAL(6,2)
+)
+BEGIN
+UPDATE planes SET
+	nombreplan		= _nombreplan,
+	descripcion 	= _descripcion,
+	precio 			= _precio
+	WHERE idplan 	= _idplan;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `registrar_contratos` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `registrar_contratos` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `registrar_contratos`(
+IN 	_idcliente 		INT,
+IN 	_idplan 		INT,
+IN 	_codcintillo 		INT,
+IN 	_codsuministro 		CHAR(8),
+IN 	_referencia 		VARCHAR(100),
+IN 	_tipodireccion		VARCHAR(50),
+IN 	_iddireccion		INT,
+IN 	_numerodireccion	INT,
+IN 	_anexo 			INT,
+IN 	_fechainicio 		DATE,
+IN 	_diapago		int
+)
+BEGIN
+	INSERT INTO contratos (idcliente, idplan, codcintillo, codsuministro, referencia, tipodireccion,
+				iddireccion, numerodireccion, anexo, fechainicio, diapago)
+	VALUES(_idcliente, _idplan, _codcintillo, _codsuministro, _referencia, _tipodireccion,
+				_iddireccion, _numerodireccion, _anexo, _fechainicio, _diapago);
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `registrar_operaciones` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `registrar_operaciones` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `registrar_operaciones`(
+IN _idcontrato 	    	INT,
+IN _idusuariotecnico 	INT,
+IN _tipooperacion	VARCHAR(50),
+IN _materialesretirados VARCHAR(500),
+IN _materialesusados	VARCHAR(500)
+)
+BEGIN
+INSERT INTO operaciones(idcontrato, idusuariotecnico, tipooperacion, materialesretirados, materialesusados)
+VALUES 	(_idcontrato, _idusuariotecnico, _tipooperacion, _materialesretirados, _materialesusados);
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `registrar_pago` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `registrar_pago` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `registrar_pago`(
+IN _idcontrato		INT,
+IN _anopago 		SMALLINT(6),
+IN _mespago 		TINYINT(4),
+IN _netopagar		DECIMAL(6,2),
+IN _idusuarioregistro 	INT
+)
+BEGIN
+	INSERT INTO pagos(idcontrato, anopago, mespago, netopagar, idusuarioregistro) 
+	VALUES(_idcontrato,_anopago,_mespago, _netopagar, _idusuarioregistro);
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `registrar_personas` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `registrar_personas` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `registrar_personas`(
+	IN 	_iddistrito	VARCHAR(6),
+	IN 	_nombres 	VARCHAR(50),
+	IN 	_apellidos 	VARCHAR(50),
+	IN 	_dni 		CHAR(8),
+	IN 	_telefono 	CHAR(11),
+	IN 	_email 		VARCHAR(50)
+)
+BEGIN
+	IF _email = '' THEN SET _email = NULL; END IF;
+INSERT INTO personas(iddistrito,nombres, apellidos, dni, telefono, email)
+	VALUES(_iddistrito,_nombres, _apellidos, _dni, _telefono, _email);
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `Registrar_planes` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `Registrar_planes` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `Registrar_planes`(
+IN _nombreplan VARCHAR(50),
+IN _descripcion VARCHAR(100),
+IN _precio DECIMAL(6,2)
+)
+BEGIN
+INSERT INTO planes (nombreplan, descripcion, precio)
+VALUES (_nombreplan, _descripcion, _precio);
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `registrar_usuarios` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `registrar_usuarios` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `registrar_usuarios`(
+	IN 	_idpersona 	INT,
+	IN 	_nombreusuario 	VARCHAR(50),
+	IN 	_claveacceso 	VARCHAR(100),
+	IN 	_rol 	        VARCHAR(50)
+)
+BEGIN
+INSERT INTO usuarios(idpersona, nombreusuario, claveacceso, rol)
+	VALUES(_idpersona, _nombreusuario, _claveacceso, _rol);
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `spu_eliminar_direccion` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `spu_eliminar_direccion` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_eliminar_direccion`(
+  IN _iddireccion INT
+)
+BEGIN
+	update direcciones set estado = '0' where iddireccion = _iddireccion;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `spu_listar_direcciones` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `spu_listar_direcciones` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_listar_direcciones`()
+BEGIN
+SELECT * FROM direcciones where estado = '1';
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `spu_registrar_cliente` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `spu_registrar_cliente` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_registrar_cliente`(
+ IN _idpersona INT,
+ IN _idusuarioregistro INT
+)
+BEGIN
+INSERT INTO clientes(idpersona, idusuarioregistro)
+VALUES(_idpersona, _idusuarioregistro);
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `spu_registrar_direcciones` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `spu_registrar_direcciones` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_registrar_direcciones`(
+ IN _direccion VARCHAR(50)
+)
+BEGIN
+INSERT INTO direcciones(direccion)
+VALUES(_direccion);
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `spu_usuarios_login` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `spu_usuarios_login` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_usuarios_login`(
+  IN _nombreusuario VARCHAR(50)
+)
+BEGIN
+SELECT 	usuarios.`idusuario`, personas.`apellidos`, personas.`nombres`, personas.`dni`,
+	personas.`email`, personas.`telefono`, usuarios.`nombreusuario`,
+	usuarios.`rol`, usuarios.`fecharegistro`, usuarios.`claveacceso`, usuarios.`fechabaja`
+FROM usuarios
+INNER JOIN personas
+ON personas.idpersona = usuarios.idpersona
+WHERE nombreusuario = _nombreusuario AND estado = 1;
+END */$$
+DELIMITER ;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

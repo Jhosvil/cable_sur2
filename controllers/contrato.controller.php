@@ -35,7 +35,10 @@ if (isset($_GET['operacion'])) {
                 <i class='fas fa-file-signature'></i>
               </button>
               <button id='btnConcluirContrato' data-idcontrato = '{$registro->idcontrato}' title='Terminar Contrato' type='button' class='mt-1 btn btn-danger'>
-              <i class='fas fa-times-circle'></i>
+                <i class='fas fa-times-circle'></i>
+              </button>
+              <button id='btnRealizarPago' data-idcontrato = '{$registro->idcontrato}' title='Realizar Pago' type='button' class='mt-1 btn btn-success' data-toggle='modal' data-target='#modalRegistrarPago' data-whatever='@mdo'>
+                <i class='fas fa-hand-holding-usd'></i>
               </button>
             </td>
           </tr>

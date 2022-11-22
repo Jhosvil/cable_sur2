@@ -250,5 +250,54 @@
   </div>
 </div>
 
+<!-- MODAL PARA REGISTRAR UN PAGO -->
+<div class="modal fade" id="modalRegistrarPago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Registrar Pago</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Año</label>
+            <input type="text" class="form-control form-control-border" id="txtAñoPago" placeholder="2022">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Mes</label>
+            <select name="" id="txtMesPago" class="custom-select">
+              <option value="1">Enero</option>
+              <option value="2">Febrero</option>
+              <option value="3">Marzo</option>
+              <option value="4">Abril</option>
+              <option value="5">Mayo</option>
+              <option value="6">Junio</option>
+              <option value="7">Julio</option>
+              <option value="8">Agosto</option>
+              <option value="9">Setiembre</option>
+              <option value="10">Octubre</option>
+              <option value="11">Noviembre</option>
+              <option value="12">Diciembre</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Importe</label>
+            <input type="text" class="form-control form-control-border" id="txtNetoPagar">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"id= ''>Cancelar </button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnGuardarPago">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="js/contratos.js" charset="utf-8"></script>
 <script src="js/operaciones.js" charset="utf-8"></script>
+<script src="js/pago.js"></script>

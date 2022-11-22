@@ -126,7 +126,7 @@ CREATE TABLE pagos
 (
 idpago 			INT 		AUTO_INCREMENT 		PRIMARY KEY,
 idcontrato 		INT 		NOT NULL, 	-- FK
-añopago 		SMALLINT 	NOT NULL,
+anopago 		SMALLINT 	NOT NULL,
 mespago 		TINYINT 	NOT NULL,
 netopagar 		DECIMAL(6,2) 	NOT NULL,
 fechapago 		DATE 		NOT NULL 	DEFAULT NOW(),
