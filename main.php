@@ -212,6 +212,12 @@ require_once 'views/acceso-seguro.php';
                <p>Contactos</p>
              </a>
            </li>
+           <li class="nav-item">
+             <a href="main.php?view=pagos" class="nav-link">
+               <i class="nav-icon fas fa-user-circle"></i>
+               <p>Pagos</p>
+             </a>
+           </li>
            <!-- /. Opciones personalizadas -->
 
            <li class="nav-item">

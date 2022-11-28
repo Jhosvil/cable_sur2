@@ -136,11 +136,11 @@ $(".btn-mod-Persona").on("click", function() {
         var datos = {
             'operacion' : 'modificarPersona',
             'idpersona' : idpersona,
-            'nombres' : nombres,
+            'nombres'   : nombres,
             'apellidos' : apellidos,
-            'dni' : dni,
-            'telefono' : telefono,
-            'email' : email
+            'dni'       : dni,
+            'telefono'  : telefono,
+            'email'     : email
         }
         if (confirm("¿Estas seguro de Modicar a esta persona?")) {
             $.ajax({

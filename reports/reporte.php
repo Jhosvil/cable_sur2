@@ -59,7 +59,7 @@ try{
   $html2pdf->setDefaultFont('Arial');
   $html2pdf->writeHTML($data);
 
-  $html2pdf->output('reporte-test.pdf');
+  $html2pdf->output('Contrato.pdf');
 
 }
 catch(Html2PdfException $e){

@@ -21,7 +21,7 @@
         //LISTAR PAGOS
         if ($operacion == 'listarPagos') {
             // Almacenamos en un objeto
-            $tabla = $persona->listarPersona();
+            $tabla = $pago->listarPagos();
             if (count($tabla) > 0) {
                 // Contiene datos que podemos mostrar
                 foreach ($tabla as $registro) {
@@ -31,24 +31,37 @@
                             <td>{$registro->idpago}</td>
                             <td>{$registro->nomCli}</td>
                             <td>{$registro->apeCli}</td>
-                            <td>{$registro->direccionCli}</td>
+                            <td>{$registro->dirreccionCli}</td>
                             <td>{$registro->dniCli}</td>
                             <td>{$registro->mespago}</td>
                             <td>{$registro->netopagar}</td>
+                            <td>{$registro->fechapago}</td>
                             <td>{$registro->diapago}</td>
-                            <td>
-                                <center>
-                                    <button id='btnModificarPersona' title='Modificar Persona' data-idpersona='{$registro->idpersona}'  type='button' class='btn btn-warning' data-toggle='modal' data-target='#modalModificarPersona' data-whatever='@mdo'>
-                                        <i class='fas fa-user-edit'></i>
-                                    </button>
-                                    <button id='btnAñadirUsuario' title='Asignar a Usuario' data-idpersona='{$registro->idpersona}'  type='button' class='btn btn-success' data-toggle='modal' data-target='#modalAñadirUsuario' data-whatever='@mdo'>
-                                        <i class='fas fa-user-plus'></i>
-                                    </button>
-                                    <button id='btnAñadirCliente' title='Asignar a clinte' data-idpersona='{$registro->idpersona}' type='button' class='btn btn-info'>
-                                        <i class='fas fa-user-plus'></i>
-                                    </button>
-                                </center>
-                            </td>
+                        </tr>
+                    ";
+                }
+            }
+        }
+
+        //LISTAR Acreedores x mes
+        if ($operacion == 'listarAcreedores') {
+            // Almacenamos en un objeto
+            $tabla = $pago->listarAcreedores(["mespago" => $_GET['mespago']]);
+            if (count($tabla) > 0) {
+                // Contiene datos que podemos mostrar
+                foreach ($tabla as $registro) {
+                    // Imprimimos
+                    echo "
+                        <tr>
+                            <td>{$registro['idpago']}</td>
+                            <td>{$registro['nomCli']}</td>
+                            <td>{$registro['apeCli']}</td>
+                            <td>{$registro['dirreccionCli']}</td>
+                            <td>{$registro['dniCli']}</td>
+                            <td>{$registro['mespago']}</td>
+                            <td>{$registro['netopagar']}</td>
+                            <td>{$registro['fechapago']}</td>
+                            <td>{$registro['diapago']}</td>
                         </tr>
                     ";
                 }

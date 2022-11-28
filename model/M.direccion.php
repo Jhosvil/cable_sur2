@@ -1,9 +1,6 @@
 <?php
 require_once '../core/model.master.php';
 
-/**
- *
- */
 class Direccion extends ModelMaster
 {
   // REGISTRAR DIRECCIONES

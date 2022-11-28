@@ -1,8 +1,9 @@
-var idcontrato = "";
+var idcontrato  = "";   
 $("#tabla-contratos").on("click", "#btnRealizarPago", function() {
     idcontrato = $(this).attr("data-idcontrato");
 });
 
+// Realizar Pago
 $("#btnGuardarPago").on("click", function() {
     let anopago     = $("#txtAñoPago").val();
     let mespago     = $("#txtMesPago").val();
@@ -34,4 +35,44 @@ $("#btnGuardarPago").on("click", function() {
             });
         }
     }
-})
+});
+
+//listar Pago
+function listarPago() {
+    var datos = {
+        'operacion' : 'listarPagos'
+    };
+    $.ajax({
+        url     : 'controllers/pago.controller.php',
+        type    : 'GET',
+        data    : datos,
+        success:function(e){
+            var tabla = $("#tablaPago").DataTable();
+            tabla.destroy();
+            $("#listaPagos").html(e);
+            $("#tablaPago").DataTable(dataTableMedium);
+        }
+    });
+}
+
+//Lista los servicios por categorias
+$("#txtMesPagoFilter").change(function (){
+    var datos = {
+        'operacion'     : 'listarAcreedores',
+        'mespago'         : $(this).val()
+    };
+    console.log($(this).val());
+
+    $.ajax({
+        url: 'controllers/pago.controller.php',
+        type: 'GET',
+        data: datos,
+        success: function (e){
+            var tabla = $("#tablaPago").DataTable();
+            tabla.destroy();
+            $("#listaPagos").html(e);
+            $("#tablaPago").DataTable(dataTableMedium);
+        }
+    });
+});
+listarPago();

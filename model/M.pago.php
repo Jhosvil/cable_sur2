@@ -23,14 +23,15 @@ class Pagos extends ModelMaster{
         }
     }
 
-    //LISTAR ACREEDORES
-    public function listarAcrerdores($mespago)
+    //LISTAR ACREEDORES x mes
+    public function listarAcreedores($mespago)
     {
         try {
-            return parent::execProcedure($mespago, "listar_pagos", true);
+            return parent::execProcedure($mespago, "listar_acreedores", true);
         } catch (Exception $e) {
             die($e->getMessage());
         }
     }
+
 }
 ?>
