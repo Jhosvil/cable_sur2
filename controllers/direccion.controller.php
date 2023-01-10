@@ -63,7 +63,7 @@ if (isset($_GET['operacion'])) {
         echo "
           <option selected value='{$registro->iddireccion}'>{$registro->direccion}</option>
         ";
-      }
+      }   
     }
   }
 }

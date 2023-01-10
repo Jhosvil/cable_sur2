@@ -104,7 +104,7 @@ CONSTRAINT fk_iddireccion_cont FOREIGN KEY(iddireccion) REFERENCES direcciones(i
 /*
 ************* OPERACIONES ******************************
 */
-DROP TABLE operaciones
+CREATE TABLE operaciones
 (
 idoperacion 		INT 		AUTO_INCREMENT 		PRIMARY KEY,
 idcontrato 		INT 		NOT NULL,	-- FK
@@ -141,7 +141,7 @@ CONSTRAINT fk_idusuarioregistro_pag FOREIGN KEY (idusuarioregistro) REFERENCES u
 /*
 ************* DESCUENTOS ******************************
 */
-DROP TABLE descuentos
+CREATE TABLE descuentos
 (
 iddescuento 	INT 		AUTO_INCREMENT 		PRIMARY KEY,
 concepto 	VARCHAR(100) 	NOT NULL,

@@ -1,17 +1,19 @@
 /*
 ******************** PERSONAS ***************************************
 */
-INSERT INTO personas(idpersona, nombres, apellidos, dni, telefono, email) 
-VALUES ( '4','Vilma', 'Jeri Palomina', '87654321', '987654123', 'vilma@gmail.com');
+INSERT INTO personas(idpersona, iddistrito, nombres, apellidos, dni, telefono, email) 
+VALUES ( '1','050501','Smith', 'Morales Jeri', '87654321', '987654123', 'smith@gmail.com');
 
 SELECT * FROM personas
+
 
 /*
 ******************** USUARIOS ***************************************
 */
-INSERT INTO usuarios(idusuario, idpersona, nombreusuario, claveacceso, rol, fecharegistro, estado) 
-VALUES ( '2','2', 'corina12', '123', 'administrador', NOW(), '1');
+INSERT INTO usuarios(idpersona, nombreusuario, claveacceso, rol, fecharegistro, estado) 
+VALUES ('1', 'smith12', '$2Y$10$BvMvL.Us6KO8ww.ne.Kcme5XNvjXG6GUXWCEjLQR5AkF9tDGRsxPm', 'administrador', NOW(), '1');
 
+UPDATE usuarios SET claveacceso = '$2y$10$vcwRR0pC4J2OPBe3iTx7gefe4WAOuqevDCDblvDRWsc7/EiXSUIHq'
 SELECT * FROM usuarios;
 
 /*
