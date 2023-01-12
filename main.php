@@ -140,6 +140,12 @@ require_once 'views/acceso-seguro.php';
                   <p>San Miguel</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="main.php?view=clientes-inactivos" class="nav-link">
+                <i class="nav-icon fas fa-search-location"></i>
+                  <p>Clientes Inactivos</p>
+                </a>
+              </li>
             </ul>
           </li>
 
@@ -167,6 +173,7 @@ require_once 'views/acceso-seguro.php';
               </li>
             </ul>
           </li>
+
           <li class="nav-item menu-close">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-map-marker-alt"></i>

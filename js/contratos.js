@@ -77,24 +77,5 @@ $("#tabla-contratos").on("click", "#btnImprimirContrato", function() {
   window.location.href = "reports/reporte.php?idcontrato=" + idcontrato;
 })
 
-//CULMINAR UN CONTRATO
-$("#tabla-contratos").on("click", "#btnConcluirContrato", function() {
-  idcontrato = $(this).attr('data-idcontrato');
-  var datos = {
-    'operacion'   : 'culminarContrato',
-    'idcontrato'  :   idcontrato
-  }
-  if (confirm("¿Estas seguros de culminar?")){
-    $.ajax({
-      url : 'controllers/contrato.controller.php', 
-      type: 'GET',
-      data: datos,
-      success :function(e){
-        alert('se culmino correctamente');
-        listarContratosActivos();
-      }
-    });
-  }
-});
 
 listarContratosActivos();

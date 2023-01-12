@@ -1,20 +1,26 @@
-<h2>CLIENTES Inactivos</h2>
+<div class="container">
+    <div class="row">
+        <h3>Lista de Clientes Deshabilitados</h3>
+    </div>
+    <div class="row">
+        <table border ="1" class="table table-striped table-bordered" id="tablaClienteInactivo">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Apellido del cliente</th>
+                    <th>Nombre del cliente</th>
+                    <th>Dni del cliente</th>
+                    <th>Apellido del usuario</th>
+                    <th>Nombre del usuario</th>
+                    <th>Fecha de registro</th>
+                    <th>Operaciones</th>
+                </tr>
+            </thead>
+            <tbody id="listarClienteInactivo">
+                <!-- Aqui se cargaran los datos de manera asincrona -->
+            </tbody>
+        </table>
+    </div>
+</div>
 
-<table id="table_id" class="display"><font></font>
-    <thead><font></font>
-        <tr><font></font>
-            <th>Column 1</th><font></font>
-            <th>Column 2</th><font></font>
-        </tr><font></font>
-    </thead><font></font>
-    <tbody><font></font>
-        <tr><font></font>
-            <td>Row 1 Data 1</td><font></font>
-            <td>Row 1 Data 2</td><font></font>
-        </tr><font></font>
-        <tr><font></font>
-            <td>Row 2 Data 1</td><font></font>
-            <td>Row 2 Data 2</td><font></font>
-        </tr><font></font>
-    </tbody><font></font>
-</table>
+<script src="js/clientes.inactivos.js"></script>

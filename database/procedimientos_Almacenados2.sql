@@ -51,6 +51,23 @@ SELECT 	clientes.`idcliente`,
 END $$
 -- 050203 los morochucos
 
+
+-- Listar clientes inactivos
+-- -----------------------------------------------------------------
+DELIMITER $$
+CREATE PROCEDURE listar_clientes_inactivos()
+BEGIN
+SELECT 	clientes.`idcliente`,
+	perC.apellidos AS 'apecliente', perC.nombres AS 'nomcliente', perC.dni,
+	perU.apellidos AS 'apeusuario', perU.nombres AS 'nomusuario',
+	clientes.`fecharegistro`
+	FROM clientes
+	INNER JOIN personas perC ON perC.idpersona = clientes.`idpersona`
+	INNER JOIN usuarios ON usuarios.`idusuario` = clientes.`idusuarioregistro`
+	INNER JOIN personas perU ON perU.idpersona = usuarios.`idpersona`
+	WHERE clientes.`estado`= '0'; 
+END $$
+
 -- Desabilitar al cliente activo
 -- ----------------------------------------------------------------------------
 DELIMITER $$

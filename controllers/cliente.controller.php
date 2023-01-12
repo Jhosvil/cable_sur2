@@ -89,5 +89,42 @@ if (isset($_GET['operacion'])) {
       ];
       $cliente->inabilitarCliente($datosenviar);
     }
+
+    // LISTAR CLIENTES INACTIVOS
+    if ($operacion == 'listarClientesInactivos') {
+      $tabla = $cliente->listarClientesInactivos();
+      if (count($tabla) > 0) {
+        // Contiene los datos que vamos a mostrar
+        foreach ($tabla as $registro) {
+          // Imprimimos en una tabla
+          echo "
+            <tr>
+              <td>{$registro->idcliente}</td>
+              <td>{$registro->apecliente}</td>
+              <td>{$registro->nomcliente}</td>
+              <td>{$registro->dni}</td>
+              <td>{$registro->apeusuario}</td>
+              <td>{$registro->nomusuario}</td>
+              <td>{$registro->fecharegistro}</td>
+              <td>
+                <button id='btnHabilitarCliente' title='Habilitar Cliente' data-idcliente='{$registro->idcliente}' type='button' class='btn btn-danger'>
+                  <i class='fas fa-user-plus'></i>
+                </button>
+              </td>
+            </tr>
+          ";
+        }
+      }
+  }
+
+  // OPRACION PARA HABILITAR A UN CLIENTE
+  if ($operacion == 'habilitarCliente') {
+    # Array asociativo con datos
+    $datosenviar = [
+      "idcliente" => $_GET['idcliente'],
+      "idusuarioregistro" => $_SESSION['idusuario']
+    ];
+    $cliente->habilitarClienteActivo($datosenviar);
+  }
 }
 ?>

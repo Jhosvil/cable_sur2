@@ -47,6 +47,25 @@ class Cliente extends ModelMaster{
         die($e->getMessage());
       }
     }
+
+    // LISTAR CLIENTES INACTIVOS
+    public function listarClientesInactivos()
+    {
+      try {
+        return parent::getRows("listar_clientes_inactivos", true);
+      } catch (Exception $e) {
+        die($e->getMessage());
+      }
+    }
+    // HABILITAR A UN CLIENTE INACTIVO
+    public function habilitarClienteActivo(array $idcliente)
+    {
+      try {
+        parent::execProcedure($idcliente, "habilitar_clientes", false);
+      } catch (Exception $e) {
+        die($e->getMessage());
+      }
+    }
 }
 
 ?>
