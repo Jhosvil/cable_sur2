@@ -13,6 +13,7 @@ if (isset($_GET['op'])) {
             "idcontrato"            => $_GET['idcontrato'],
             "idusuariotecnico"      => $_SESSION['idusuario'],
             "tipooperacion"         => $_GET['tipooperacion'],
+            "fechahora"             => $_GET['fechahora'],
             "materialesretirados"   => $_GET['materialesretirados'],
             "materialesusados"      => $_GET['materialesusados']
         ];

@@ -242,9 +242,9 @@ require_once 'views/acceso-seguro.php';
            </li>
 
            <li class="nav-item">
-             <a href="main.php?view=nuevo_cobro" class="nav-link">
+             <a href="main.php?view=estadistica" class="nav-link">
                <i class="nav-icon fas fa-hand-holding-usd"></i>
-               <p>Realizar un Cobro</p>
+               <p>Estadistica</p>
              </a>
            </li>
            <li class="nav-item">
@@ -329,6 +329,10 @@ require_once 'views/acceso-seguro.php';
 
  <script src="dist/js/dataTableConfig.js" charset="utf-8"></script>
 
+ <!-- PARA CARGAR EL CHART.JS -->
+ <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
  <script>
    $(document).ready(function (){
      var content = getParam('view');

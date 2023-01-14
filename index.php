@@ -167,6 +167,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
+ <!-- PARA CARGAR EL CHART.JS -->
+ <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
 <script>
   $(document).ready(function (){
     var content = getParam('view');

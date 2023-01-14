@@ -224,6 +224,10 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Fecha</label>
+            <input type="date" class="form-control" id="txtfechOper">
+          </div>
+          <div class="form-group">
             <label for="recipient-name" class="col-form-label">Tipo de operación</label>
             <select name="" id="txttipooperacion" class="custom-select">
               <option value="Instalacion">Instalacion</option>

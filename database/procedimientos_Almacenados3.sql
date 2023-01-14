@@ -135,11 +135,13 @@ CREATE PROCEDURE registrar_operaciones
 IN _idcontrato 	    	INT,
 IN _idusuariotecnico 	INT,
 IN _tipooperacion	VARCHAR(50),
+IN _fechahora		DATE,
 IN _materialesretirados VARCHAR(500),
 IN _materialesusados	VARCHAR(500)
+
 )BEGIN
-INSERT INTO operaciones(idcontrato, idusuariotecnico, tipooperacion, materialesretirados, materialesusados)
-VALUES 	(_idcontrato, _idusuariotecnico, _tipooperacion, _materialesretirados, _materialesusados);
+INSERT INTO operaciones(idcontrato, idusuariotecnico, tipooperacion, fechahora, materialesretirados, materialesusados)
+VALUES 	(_idcontrato, _idusuariotecnico, _tipooperacion, _fechahora, _materialesretirados, _materialesusados);
 END $$
 
 -- Listar

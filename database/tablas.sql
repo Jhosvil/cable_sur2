@@ -110,7 +110,7 @@ idoperacion 		INT 		AUTO_INCREMENT 		PRIMARY KEY,
 idcontrato 		INT 		NOT NULL,	-- FK
 idusuariotecnico 	INT 		NOT NULL,	-- FK
 tipooperacion 		VARCHAR(50) 	NOT NULL,
-fechahora 		DATETIME 	NOT NULL 	DEFAULT NOW(),
+fechahora 		DATE 	 	NOT NULL,
 materialesretirados 	VARCHAR(200) 	NULL,
 materialesusados 	VARCHAR(200) 	NULL,
 

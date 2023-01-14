@@ -10,23 +10,30 @@ $("#btnGuardarOperacion").on("click", function(){
     let materialesretirados = $("#txtMaterialesRetirados").val();
     let materialesusados    = $("#txtMaterialesUsados").val()
     let tipooperacion       = $("#txttipooperacion").val();
-    
-    var datos = {
-        'op'                    : 'registrarOperacion',
-        'idcontrato'            : idcontrato,
-        'tipooperacion'         : tipooperacion,
-        'materialesretirados'   : materialesretirados,
-        'materialesusados'      : materialesusados
-    }
-    $.ajax({
-        url: 'controllers/operaciones.controller.php',
-        type: 'GET',
-        data: datos,
-        success: function(e){
-            console.log(e);
-            alert("Se ah guardo correctamente");
+    let fechahora           = $("#txtfechOper").val();
+
+    if (fechahora == "") {
+        alert("ingrese la fecha");
+    }else{
+        var datos = {
+            'op'                    : 'registrarOperacion',
+            'idcontrato'            : idcontrato,
+            'tipooperacion'         : tipooperacion,
+            'fechahora'             : fechahora,
+            'materialesretirados'   : materialesretirados,
+            'materialesusados'      : materialesusados
         }
-    });
+        $.ajax({
+            url: 'controllers/operaciones.controller.php',
+            type: 'GET',
+            data: datos,
+            success: function(e){
+                console.log(e);
+                alert("Se ah guardo correctamente");
+            }
+        });
+    }
+    
 });
 
 // FUNCION PARA LISTAR LOS DATOS DE LA TABLA OPERACIONES DESDE LA BD
