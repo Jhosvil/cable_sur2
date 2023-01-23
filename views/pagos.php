@@ -31,10 +31,10 @@
     <thead class="thead-dark">
         <tr>
             <th scope="col">id</th>
-            <th scope="col">nomCli</th>
-            <th scope="col">apeCli</th>
-            <th scope="col">DireccionCli</th>
-            <th scope="col">DniCli</th>
+            <th scope="col">nombre</th>
+            <th scope="col">apellido</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Dni</th>
             <th scope="col">mespago</th>
             <th scope="col">netopagar</th>
             <th scope="col">fechapago</th>

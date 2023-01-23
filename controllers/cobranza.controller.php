@@ -23,6 +23,7 @@
                             <td>{$registro->telefono}</td>
                             <td>{$registro->dni}</td>
                             <td>{$registro->anexo}</td>
+                            <td>{$registro->mesDiasDesc}</td>
                             <td>{$registro->enero}</td>
                             <td>{$registro->febrero}</td>
                             <td>{$registro->marzo}</td>
@@ -73,6 +74,7 @@
                             <td>{$registro['telefono']}</td>
                             <td>{$registro['dni']}</td>
                             <td>{$registro['anexo']}</td>
+                            <td>{$registro['mesDiasDesc']}</td>
                             <td>{$registro['enero']}</td>
                             <td>{$registro['febrero']}</td>
                             <td>{$registro['marzo']}</td>

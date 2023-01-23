@@ -84,7 +84,7 @@ var dataTableComplete = {
     url: '//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json'
   },
   searching: true,
-  responsive: true,
+  responsive: false,
   lengthChange: true,
   autoWidth: false,
   info: true,

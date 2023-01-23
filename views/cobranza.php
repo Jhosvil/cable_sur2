@@ -22,6 +22,7 @@
                 <th>Telefono</th>
                 <th>Dni</th>
                 <th>Anexo</th>
+                <th>Mes-Dias-Desc</th>
                 <th>Enero</th>
                 <th>Febrero</th>
                 <th>Marzo</th>
