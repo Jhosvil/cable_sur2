@@ -197,8 +197,6 @@ require_once 'views/acceso-seguro.php';
               </li>
             </ul>
           </li>
-
-
           <li class="nav-item">
             <a href="main.php?view=direcciones" class="nav-link">
               <i class="nav-icon fas fa-user-circle"></i>
@@ -221,6 +219,12 @@ require_once 'views/acceso-seguro.php';
              <a href="main.php?view=cobranza" class="nav-link">
                <i class="nav-icon fas fa-user-circle"></i>
                <p>Lista de Cobranza</p>
+             </a>
+           </li>
+           <li class="nav-item">
+             <a href="main.php?view=buscar-cliente" class="nav-link">
+               <i class="nav-icon fas fa-user-circle"></i>
+               <p>Buscar Cliente</p>
              </a>
            </li>
 

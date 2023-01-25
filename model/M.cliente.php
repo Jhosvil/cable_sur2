@@ -39,7 +39,7 @@ class Cliente extends ModelMaster{
     }
 
     // INABILITAR A UN CLIENTE
-    public function inabilitarCliente($idcliente)
+    public function inabilitarCliente(array $idcliente)
     {
       try {
         parent::execProcedure($idcliente, "inabilitar_clientes", false);

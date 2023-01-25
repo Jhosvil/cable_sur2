@@ -72,7 +72,14 @@ if (isset($_GET['operacion'])) {
     $contrato->registrarContrato($datos);
   }
 
-
+  // LISTAR DATOS DEL CLIENTE X DNI
+  if ($operacion == 'listarDatosClienteXDni') {
+    $dni = $contrato->listarDatosClienteXDni(["dni" => $_GET["dni"]]);
+  
+    if ($dni) {
+      echo json_encode($dni[0]);
+    }
+  }
 }
 
 

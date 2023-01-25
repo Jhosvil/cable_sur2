@@ -68,7 +68,25 @@
             }
         }
 
-        
+        // LISTAR PAGOS X DNI DEL CLIENTE
+        if ($operacion == 'listarPagosXDni') {
+            // Almacenamos en un objeto
+            $tabla = $pago->listarPagosXDni(["dni" => $_GET['dni']]);
+            if (count($tabla) > 0) {
+                // Contiene datos que podemos mostrar
+                foreach ($tabla as $registro) {
+                    // Imprimimos
+                    echo "
+                        <tr>
+                            <td>{$registro['idpago']}</td>
+                            <td>{$registro['mespago']}</td>
+                            <td>{$registro['fechapago']}</td>
+                            <td>{$registro['netopagar']}</td>
+                        </tr>
+                    ";
+                }
+            }
+        }
     }
 
 ?>

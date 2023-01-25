@@ -71,18 +71,18 @@ INNER JOIN clientes CLI 	ON CLI.`idcliente` 	= CONT.`idcliente`
 INNER JOIN personas PER 	ON PER.`idpersona` 	= CLI.`idpersona`
 INNER JOIN direcciones 	DIR 	ON DIR.`iddireccion` 	= CONT.`iddireccion`
 LEFT JOIN  pagos 	PAG 	ON PAG.`idcontrato` 	= CONT.`idcontrato`
-LEFT JOIN pagos 	PAG1 	ON PAG1.`mespago` 	= '1' 	AND PAG1.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG2 	ON PAG2.`mespago` 	= '2' 	AND PAG2.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG3 	ON PAG3.`mespago` 	= '3' 	AND PAG3.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG4 	ON PAG4.`mespago` 	= '4' 	AND PAG4.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG5 	ON PAG5.`mespago` 	= '5' 	AND PAG5.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG6 	ON PAG6.`mespago` 	= '6' 	AND PAG6.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG7 	ON PAG7.`mespago` 	= '7' 	AND PAG7.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG8 	ON PAG8.`mespago` 	= '8' 	AND PAG8.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG9 	ON PAG9.`mespago` 	= '9' 	AND PAG9.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG10 	ON PAG10.`mespago`	= '10'	AND PAG10.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG11 	ON PAG11.`mespago` 	= '11' 	AND PAG11.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG12 	ON PAG12.`mespago` 	= '12'	AND PAG12.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG1 	ON PAG1.`mespago` 	= '1' 	AND PAG1.`idcontrato` = CONT.`idcontrato` AND PAG1.`anopago` = '2023'
+LEFT JOIN pagos 	PAG2 	ON PAG2.`mespago` 	= '2' 	AND PAG2.`idcontrato` = CONT.`idcontrato` AND PAG2.`anopago` = '2023'
+LEFT JOIN pagos 	PAG3 	ON PAG3.`mespago` 	= '3' 	AND PAG3.`idcontrato` = CONT.`idcontrato` AND PAG3.`anopago` = '2023'
+LEFT JOIN pagos 	PAG4 	ON PAG4.`mespago` 	= '4' 	AND PAG4.`idcontrato` = CONT.`idcontrato` AND PAG4.`anopago` = '2023'
+LEFT JOIN pagos 	PAG5 	ON PAG5.`mespago` 	= '5' 	AND PAG5.`idcontrato` = CONT.`idcontrato` AND PAG5.`anopago` = '2023'
+LEFT JOIN pagos 	PAG6 	ON PAG6.`mespago` 	= '6' 	AND PAG6.`idcontrato` = CONT.`idcontrato` AND PAG6.`anopago` = '2023'
+LEFT JOIN pagos 	PAG7 	ON PAG7.`mespago` 	= '7' 	AND PAG7.`idcontrato` = CONT.`idcontrato` AND PAG7.`anopago` = '2023'
+LEFT JOIN pagos 	PAG8 	ON PAG8.`mespago` 	= '8' 	AND PAG8.`idcontrato` = CONT.`idcontrato` AND PAG8.`anopago` = '2023' 
+LEFT JOIN pagos 	PAG9 	ON PAG9.`mespago` 	= '9' 	AND PAG9.`idcontrato` = CONT.`idcontrato` AND PAG9.`anopago` = '2023'
+LEFT JOIN pagos 	PAG10 	ON PAG10.`mespago`	= '10'	AND PAG10.`idcontrato` = CONT.`idcontrato` AND PAG10.`anopago` = '2023'
+LEFT JOIN pagos 	PAG11 	ON PAG11.`mespago` 	= '11' 	AND PAG11.`idcontrato` = CONT.`idcontrato` AND PAG11.`anopago` = '2023'
+LEFT JOIN pagos 	PAG12 	ON PAG12.`mespago` 	= '12'	AND PAG12.`idcontrato` = CONT.`idcontrato` AND PAG12.`anopago` = '2023'
 WHERE CLI.`estado` = '1' AND CONT.`fechatermino` IS NULL;
 END $$
 
@@ -165,18 +165,18 @@ INNER JOIN clientes CLI 	ON CLI.`idcliente` 	= CONT.`idcliente`
 INNER JOIN personas PER 	ON PER.`idpersona` 	= CLI.`idpersona`
 INNER JOIN direcciones 	DIR 	ON DIR.`iddireccion` 	= CONT.`iddireccion`
 LEFT JOIN  pagos 	PAG 	ON PAG.`idcontrato` 	= CONT.`idcontrato`
-LEFT JOIN pagos 	PAG1 	ON PAG1.`mespago` 	= '1' 	AND PAG1.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG2 	ON PAG2.`mespago` 	= '2' 	AND PAG2.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG3 	ON PAG3.`mespago` 	= '3' 	AND PAG3.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG4 	ON PAG4.`mespago` 	= '4' 	AND PAG4.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG5 	ON PAG5.`mespago` 	= '5' 	AND PAG5.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG6 	ON PAG6.`mespago` 	= '6' 	AND PAG6.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG7 	ON PAG7.`mespago` 	= '7' 	AND PAG7.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG8 	ON PAG8.`mespago` 	= '8' 	AND PAG8.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG9 	ON PAG9.`mespago` 	= '9' 	AND PAG9.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG10 	ON PAG10.`mespago`	= '10'	AND PAG10.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG11 	ON PAG11.`mespago` 	= '11' 	AND PAG11.`idcontrato` = CONT.`idcontrato`
-LEFT JOIN pagos 	PAG12 	ON PAG12.`mespago` 	= '12'	AND PAG12.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG1 	ON PAG1.`mespago` 	= '1' 	AND PAG1.`idcontrato` = CONT.`idcontrato` AND PAG1.`anopago` = '2023'
+LEFT JOIN pagos 	PAG2 	ON PAG2.`mespago` 	= '2' 	AND PAG2.`idcontrato` = CONT.`idcontrato` AND PAG2.`anopago` = '2023'
+LEFT JOIN pagos 	PAG3 	ON PAG3.`mespago` 	= '3' 	AND PAG3.`idcontrato` = CONT.`idcontrato` AND PAG3.`anopago` = '2023' 
+LEFT JOIN pagos 	PAG4 	ON PAG4.`mespago` 	= '4' 	AND PAG4.`idcontrato` = CONT.`idcontrato`AND PAG4.`anopago` = '2023'
+LEFT JOIN pagos 	PAG5 	ON PAG5.`mespago` 	= '5' 	AND PAG5.`idcontrato` = CONT.`idcontrato` AND PAG5.`anopago` = '2023'
+LEFT JOIN pagos 	PAG6 	ON PAG6.`mespago` 	= '6' 	AND PAG6.`idcontrato` = CONT.`idcontrato` AND PAG6.`anopago` = '2023'
+LEFT JOIN pagos 	PAG7 	ON PAG7.`mespago` 	= '7' 	AND PAG7.`idcontrato` = CONT.`idcontrato` AND PAG7.`anopago` = '2023'
+LEFT JOIN pagos 	PAG8 	ON PAG8.`mespago` 	= '8' 	AND PAG8.`idcontrato` = CONT.`idcontrato` AND PAG8.`anopago` = '2023'
+LEFT JOIN pagos 	PAG9 	ON PAG9.`mespago` 	= '9' 	AND PAG9.`idcontrato` = CONT.`idcontrato` AND PAG9.`anopago` = '2023'
+LEFT JOIN pagos 	PAG10 	ON PAG10.`mespago`	= '10'	AND PAG10.`idcontrato` = CONT.`idcontrato` AND PAG10.`anopago` = '2023'
+LEFT JOIN pagos 	PAG11 	ON PAG11.`mespago` 	= '11' 	AND PAG11.`idcontrato` = CONT.`idcontrato` AND PAG11.`anopago` = '2023'
+LEFT JOIN pagos 	PAG12 	ON PAG12.`mespago` 	= '12'	AND PAG12.`idcontrato` = CONT.`idcontrato` AND PAG12.`anopago` = '2023'
 WHERE CLI.`estado` = '1'AND CLI.`idusuarioregistro` = _idusuarioregistro AND CONT.`fechatermino` IS NULL;
 END $$
 

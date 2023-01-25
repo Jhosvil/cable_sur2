@@ -7,7 +7,7 @@ class Contrato extends ModelMaster
 {
 
   // REGISTRAR CONTRATOS
-  function registrarContrato($datos)
+  function registrarContrato(array $datos)
   {
     try {
       parent::execProcedure($datos, "registrar_contratos", false);
@@ -29,7 +29,7 @@ class Contrato extends ModelMaster
 
 
   // LISTAR UN CONTRATO
-  public function listarUnContrato($idContrato)
+  public function listarUnContrato(array $idContrato)
   {
     try {
       return parent::execProcedure($idContrato,"listar_un_contrato", true);
@@ -37,6 +37,16 @@ class Contrato extends ModelMaster
       die($e->getMessage());
     }
 
+  }
+
+  // LISTAR DATOS PERSONALES DEL CLIENTE POR DNI
+  public function listarDatosClienteXDni(array $dni)
+  {
+    try {
+      return parent::execProcedure($dni, "listar_datos_personales_del_cliente", true);
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
   }
 
 }

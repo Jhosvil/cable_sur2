@@ -32,13 +32,13 @@ CREATE TABLE `clientes` (
   KEY `fk_idusuarioregistro_cli` (`idusuarioregistro`),
   CONSTRAINT `fk_idpersona_cli` FOREIGN KEY (`idpersona`) REFERENCES `personas` (`idpersona`),
   CONSTRAINT `fk_idusuarioregistro_cli` FOREIGN KEY (`idusuarioregistro`) REFERENCES `usuarios` (`idusuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `clientes` */
 
 LOCK TABLES `clientes` WRITE;
 
-insert  into `clientes`(`idcliente`,`idpersona`,`fecharegistro`,`fechadesabilitado`,`estado`,`idusuarioregistro`) values (1,2,'2022-10-25',NULL,1,1),(2,6,'2022-10-25','2022-10-25',0,1),(3,6,'2022-10-25','2022-10-25',0,1),(4,5,'2022-10-25',NULL,1,1),(5,6,'2022-11-02',NULL,1,1),(6,4,'2022-11-04',NULL,1,1);
+insert  into `clientes`(`idcliente`,`idpersona`,`fecharegistro`,`fechadesabilitado`,`estado`,`idusuarioregistro`) values (1,10,'2023-01-09',NULL,1,1),(2,9,'2023-01-09',NULL,1,1),(3,8,'2023-01-09',NULL,1,1),(4,7,'2023-01-09',NULL,1,1),(5,6,'2023-01-09',NULL,1,1),(6,5,'2023-01-09',NULL,1,2),(7,4,'2023-01-09',NULL,1,2),(8,3,'2023-01-09',NULL,1,1),(9,11,'2023-01-12',NULL,1,1),(10,12,'2023-01-14',NULL,1,1),(11,13,'2023-01-16',NULL,1,1),(12,14,'2023-01-16',NULL,1,1);
 
 UNLOCK TABLES;
 
@@ -67,13 +67,13 @@ CREATE TABLE `contratos` (
   CONSTRAINT `fk_idcliente_cont` FOREIGN KEY (`idcliente`) REFERENCES `clientes` (`idcliente`),
   CONSTRAINT `fk_iddireccion_cont` FOREIGN KEY (`iddireccion`) REFERENCES `direcciones` (`iddireccion`),
   CONSTRAINT `fk_idplan_cont` FOREIGN KEY (`idplan`) REFERENCES `planes` (`idplan`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `contratos` */
 
 LOCK TABLES `contratos` WRITE;
 
-insert  into `contratos`(`idcontrato`,`idcliente`,`idplan`,`codcintillo`,`codsuministro`,`referencia`,`tipodireccion`,`iddireccion`,`numerodireccion`,`anexo`,`fechainicio`,`fechatermino`,`diapago`) values (1,1,1,1234,'1234567','Por la plaza principal','Av',4,300,1,'2022-11-08','2022-11-08',30),(4,1,1,123456,'12345678','Al costado de peluqueria','AV',2,200,0,'2022-11-08','2022-11-08',30),(5,6,1,5621,'98765','costado del mercado','Jr',5,200,0,'2022-11-10','2022-11-08',30),(6,4,2,5621,'1234567','Por la plaza principal','Av',7,33,0,'2022-11-08',NULL,30);
+insert  into `contratos`(`idcontrato`,`idcliente`,`idplan`,`codcintillo`,`codsuministro`,`referencia`,`tipodireccion`,`iddireccion`,`numerodireccion`,`anexo`,`fechainicio`,`fechatermino`,`diapago`) values (1,8,2,5621,'98765','Por la plaza principal','Av',4,2,0,'2023-01-09',NULL,30),(2,7,1,987,'98765020','costado del colegio pocras','Av',3,2,0,'2023-01-09',NULL,30),(3,6,1,654,'23765020','costado del colegio pocras','Jr',4,63,0,'2023-01-09',NULL,30),(4,5,2,852,'78954522','costado del colegio','Jr',1,36,1,'2023-01-09',NULL,30),(5,4,2,741,'12354522','por el centro','Av',2,38,1,'2023-01-09',NULL,30),(6,3,2,159,'12354522','al costado de una tienda','Av',2,360,0,'2023-01-09',NULL,30),(7,2,2,753,'96354522','al costado de una bodega','Av',3,360,0,'2023-01-09',NULL,30),(8,1,1,624,'35354522','al costado del estadio','Av',2,38,0,'2023-01-09',NULL,30),(9,9,2,635,'25836914','por el mercado','Av',2,98,1,'2023-01-12',NULL,30),(10,10,2,152,'89621231','Por la plaza principal','Jr',2,865,0,'2023-03-23',NULL,30),(11,11,2,13245,'12345678','costado del colegio','Av',2,21,0,'2023-01-16',NULL,30),(12,12,3,45632,'98765432','por el centro','Av',2,65,0,'2023-01-16',NULL,0),(13,12,3,45632,'98765432','por el centro','Av',2,65,0,'2023-01-16',NULL,0);
 
 UNLOCK TABLES;
 
@@ -95,6 +95,26 @@ insert  into `departamentos`(`iddepartamento`,`nombredepartamento`) values ('01'
 
 UNLOCK TABLES;
 
+/*Table structure for table `descuentos` */
+
+DROP TABLE IF EXISTS `descuentos`;
+
+CREATE TABLE `descuentos` (
+  `iddescuento` int(11) NOT NULL AUTO_INCREMENT,
+  `concepto` varchar(100) NOT NULL,
+  `monto` decimal(2,2) NOT NULL,
+  `idpago` int(11) NOT NULL,
+  PRIMARY KEY (`iddescuento`),
+  KEY `fk_idpago_desc` (`idpago`),
+  CONSTRAINT `fk_idpago_desc` FOREIGN KEY (`idpago`) REFERENCES `pagos` (`idpago`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `descuentos` */
+
+LOCK TABLES `descuentos` WRITE;
+
+UNLOCK TABLES;
+
 /*Table structure for table `direcciones` */
 
 DROP TABLE IF EXISTS `direcciones`;
@@ -104,13 +124,13 @@ CREATE TABLE `direcciones` (
   `direccion` varchar(50) NOT NULL,
   `estado` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`iddireccion`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `direcciones` */
 
 LOCK TABLES `direcciones` WRITE;
 
-insert  into `direcciones`(`iddireccion`,`direccion`,`estado`) values (1,'micaela bastidas',0),(2,'Manco Capac',1),(3,'Ramon Castilla',1),(4,'Micaela Bastidas',1),(5,'Wari',1),(6,'Francisco Pizarro',1),(7,'Quinuapata',1),(8,'San juan Bautista',1),(9,'Miguel Grau',1),(10,'Alfonso Ugarte',1),(11,'Los Andes',1);
+insert  into `direcciones`(`iddireccion`,`direccion`,`estado`) values (1,'Manco Capac',1),(2,'Miguel Grau',1),(3,'Francisco Pizarro',1),(4,'Micaela Bastidas',1);
 
 UNLOCK TABLES;
 
@@ -135,6 +155,33 @@ insert  into `distritos`(`iddistrito`,`nombredistrito`,`idprovincia`) values ('0
 
 UNLOCK TABLES;
 
+/*Table structure for table `operaciones` */
+
+DROP TABLE IF EXISTS `operaciones`;
+
+CREATE TABLE `operaciones` (
+  `idoperacion` int(11) NOT NULL AUTO_INCREMENT,
+  `idcontrato` int(11) NOT NULL,
+  `idusuariotecnico` int(11) NOT NULL,
+  `tipooperacion` varchar(50) NOT NULL,
+  `fechahora` date NOT NULL,
+  `materialesretirados` varchar(200) DEFAULT NULL,
+  `materialesusados` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`idoperacion`),
+  KEY `fk_idcontrato_ope` (`idcontrato`),
+  KEY `fk_idusuariotecnico_ope` (`idusuariotecnico`),
+  CONSTRAINT `fk_idcontrato_ope` FOREIGN KEY (`idcontrato`) REFERENCES `contratos` (`idcontrato`),
+  CONSTRAINT `fk_idusuariotecnico_ope` FOREIGN KEY (`idusuariotecnico`) REFERENCES `usuarios` (`idusuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `operaciones` */
+
+LOCK TABLES `operaciones` WRITE;
+
+insert  into `operaciones`(`idoperacion`,`idcontrato`,`idusuariotecnico`,`tipooperacion`,`fechahora`,`materialesretirados`,`materialesusados`) values (1,9,1,'Reconexion','2023-01-13','awda','ads'),(2,4,1,'Instalacion','2023-01-19','asdasd','sgsfg'),(3,5,1,'Reconexion','2023-01-19','asdas','asd');
+
+UNLOCK TABLES;
+
 /*Table structure for table `pagos` */
 
 DROP TABLE IF EXISTS `pagos`;
@@ -152,13 +199,13 @@ CREATE TABLE `pagos` (
   KEY `fk_idusuarioregistro_pag` (`idusuarioregistro`),
   CONSTRAINT `fk_idcontrato_pag` FOREIGN KEY (`idcontrato`) REFERENCES `contratos` (`idcontrato`),
   CONSTRAINT `fk_idusuarioregistro_pag` FOREIGN KEY (`idusuarioregistro`) REFERENCES `usuarios` (`idusuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `pagos` */
 
 LOCK TABLES `pagos` WRITE;
 
-insert  into `pagos`(`idpago`,`idcontrato`,`anopago`,`mespago`,`netopagar`,`fechapago`,`idusuarioregistro`) values (1,6,2022,5,50.00,'2022-11-15',1),(2,6,2022,7,50.00,'2022-11-15',1);
+insert  into `pagos`(`idpago`,`idcontrato`,`anopago`,`mespago`,`netopagar`,`fechapago`,`idusuarioregistro`) values (1,9,2022,1,25.00,'2023-01-14',1),(2,9,2022,2,25.00,'2023-01-14',1),(3,8,2022,1,25.00,'2023-01-14',1),(4,10,2022,3,25.00,'2023-01-14',1),(5,13,2023,1,55.00,'2023-01-16',1);
 
 UNLOCK TABLES;
 
@@ -178,13 +225,13 @@ CREATE TABLE `personas` (
   UNIQUE KEY `uk_usu_idpersona` (`idpersona`),
   KEY `fk_iddistrito_per` (`iddistrito`),
   CONSTRAINT `fk_iddistrito_per` FOREIGN KEY (`iddistrito`) REFERENCES `distritos` (`iddistrito`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `personas` */
 
 LOCK TABLES `personas` WRITE;
 
-insert  into `personas`(`idpersona`,`iddistrito`,`nombres`,`apellidos`,`dni`,`telefono`,`email`) values (1,'050501','Smith','Morales Jeri','12345679','123456789','el_leder@gmail.com'),(2,'050501','Elian Corina','Gutierrez Tincusi','70985557','123456789',NULL),(3,'050501','Sulca','Gutierrez Tincusi','70985557','97354123',''),(4,'050501','Maria','La del Barrio','70985557','97354123',NULL),(5,'050501','Paloma','Fiuza','70985557','97354123',NULL),(6,'050203','Antonia','Vila Quipe','70985557','97354123',NULL),(7,'050501','Luis Angel','Mosco Salvatierra','72630038','936246820','moscosalvatierra@gmail.com'),(8,'050503','aa','adsa','516541','455',NULL),(9,'050503','a','adsa','516541','455',NULL),(10,'050503','b','adsa','516541','455',NULL),(11,'050503','c','adsa','516541','455',NULL);
+insert  into `personas`(`idpersona`,`iddistrito`,`nombres`,`apellidos`,`dni`,`telefono`,`email`) values (1,'050501','Smith','Morales Jeri','87654321','987654123','smith@gmail.com'),(2,'050101','Alcides','Sicha Palomino','12345678','963852741',NULL),(3,'050501','Virginia','Laurente Huayta','12345678','963852741',NULL),(4,'050501','Serafina','Quispe Lujan','12345678','963852741',NULL),(5,'050501','Emerson','Laurente Huayta','12345678','963852741',NULL),(6,'050501','Roberto','Laurente Huayta','12345678','963852741',NULL),(7,'050501','Dionisio','Guevarra Pacheco','12345678','963852741',NULL),(8,'050501','Mauricio','Gutierrez Luis','12345678','963852741',NULL),(9,'050501','Anita','Candia Gutierrez','12345678','963852741',NULL),(10,'050501','Raul','Gutierrez Soto','12345678','963852741',NULL),(11,'050203','Damian','Huaman Canchari','70671234','987654321',NULL),(12,'050501','Anita','Rojas Ccasani','40266285','987123654',NULL),(13,'050501','Teodocio','Vila Perez','28683446','9876465322',NULL),(14,'050501','Fidel','Ayala Chito','25008086','987654321',NULL);
 
 UNLOCK TABLES;
 
@@ -199,13 +246,13 @@ CREATE TABLE `planes` (
   `precio` decimal(6,2) NOT NULL,
   `estado` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`idplan`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `planes` */
 
 LOCK TABLES `planes` WRITE;
 
-insert  into `planes`(`idplan`,`nombreplan`,`descripcion`,`precio`,`estado`) values (1,'familiar','para 5 televisores',120.00,1),(2,'basico','para 2 televisores',50.00,1);
+insert  into `planes`(`idplan`,`nombreplan`,`descripcion`,`precio`,`estado`) values (1,'familiar','para 3 televisores',75.00,1),(2,'basico','para 1 televisores',25.00,1),(3,'comercial','para 10 televisores',100.00,1);
 
 UNLOCK TABLES;
 
@@ -252,7 +299,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 
-insert  into `usuarios`(`idusuario`,`idpersona`,`nombreusuario`,`claveacceso`,`rol`,`fecharegistro`,`fechabaja`,`estado`) values (1,1,'smith12','$2y$10$BvMvL.Us6KO8ww.ne.Kcme5XNvjXG6GUXWCEjLQR5AkF9tDGRsxPm','Administrador','2022-10-19 22:47:35',NULL,'1'),(2,3,'sulca12','$2y$10$zDmgc/c.XGPT7h4ainrNgejLP6wCMLZYuJ7pJsmLjdItN159rS4H2','Cobrador','2022-10-28 17:22:41','2022-10-28 17:23:26','0');
+insert  into `usuarios`(`idusuario`,`idpersona`,`nombreusuario`,`claveacceso`,`rol`,`fecharegistro`,`fechabaja`,`estado`) values (1,1,'smith12','$2y$10$vcwRR0pC4J2OPBe3iTx7gefe4WAOuqevDCDblvDRWsc7/EiXSUIHq','administrador','2023-01-09 18:20:35',NULL,'1'),(2,2,'alcides12','$2y$10$XWCipoyaW.KQy94FMhU70OBvvX.RXiiYURQ4oP8nEfsiMAuf/tkBC','Administrador','2023-01-09 18:28:23',NULL,'1');
 
 UNLOCK TABLES;
 
@@ -267,6 +314,69 @@ in _idcontrato int
 )
 begin
 update contratos set fechatermino = now() where idcontrato = _idcontrato;
+end */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `descuentos_realizados` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `descuentos_realizados` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `descuentos_realizados`()
+begin
+	SELECT concat(PER.`nombres`, ' ', PER.`apellidos`) as 'cliente',
+		concat(CONT.`tipodireccion`,' ',DIR.`direccion`, ' ', CONT.`numerodireccion`) as 'direccion',
+		CONT.`referencia`, CONT.`anexo`, PER.`telefono`, PER.`dni`,
+		CASE
+		 WHEN MONTH(CONT.`fechainicio`) = 01 THEN 'ENERO' 	-- ENERO
+		 WHEN MONTH(CONT.`fechainicio`) = 02 THEN 'FEBRERO' 	-- FEBRERO
+		 WHEN MONTH(CONT.`fechainicio`) = 03 THEN 'MARZO' 	-- MARZO
+		 WHEN MONTH(CONT.`fechainicio`) = 04 THEN 'ABRIL'	-- ABRIL
+		 WHEN MONTH(CONT.`fechainicio`) = 05 THEN 'MAYO' 	-- MAYO
+		 WHEN MONTH(CONT.`fechainicio`) = 06 THEN 'JUNIO' 	-- JUNIO
+		 WHEN MONTH(CONT.`fechainicio`) = 07 THEN 'JULIO' 	-- JULIO
+		 WHEN MONTH(CONT.`fechainicio`) = 08 THEN 'AGOSTO' 	-- AGOSTO
+		 WHEN MONTH(CONT.`fechainicio`) = 09 THEN 'SETIEMBRE' 	-- SETIEMBRE
+		 WHEN MONTH(CONT.`fechainicio`) = 10 THEN 'OCTUBRE' 	-- OCTUBRE
+		 WHEN MONTH(CONT.`fechainicio`) = 11 THEN 'NOVIEMBRE' 	-- NOVIEMBRE
+		 WHEN MONTH(CONT.`fechainicio`) = 12 THEN 'DICIEMBRE' 	-- DICIEMBRE
+	END AS 'mesDescontado',
+	case
+	 when month(CONT.`fechainicio`) = 01 then '31' 	-- ENERO
+	 WHEN MONTH(CONT.`fechainicio`) = 02 THEN '28' 	-- FEBRERO
+	 WHEN MONTH(CONT.`fechainicio`) = 03 THEN '31' 	-- MARZO
+	 WHEN MONTH(CONT.`fechainicio`) = 04 THEN '30'	-- ABRIL
+	 WHEN MONTH(CONT.`fechainicio`) = 05 THEN '31' 	-- MAYO
+	 WHEN MONTH(CONT.`fechainicio`) = 06 THEN '30' 	-- JUNIO
+	 WHEN MONTH(CONT.`fechainicio`) = 07 THEN '31' 	-- JULIO
+	 WHEN MONTH(CONT.`fechainicio`) = 08 THEN '31' 	-- AGOSTO
+	 WHEN MONTH(CONT.`fechainicio`) = 09 THEN '30' 	-- SETIEMBRE
+	 WHEN MONTH(CONT.`fechainicio`) = 10 THEN '31' 	-- OCTUBRE
+	 WHEN MONTH(CONT.`fechainicio`) = 11 THEN '30' 	-- NOVIEMBRE
+	 WHEN MONTH(CONT.`fechainicio`) = 12 THEN '31' 	-- DICIEMBRE
+	END AS 'totalMes',
+	round((PLAN.`precio` / CASE
+	 WHEN MONTH(CONT.`fechainicio`) = 01 THEN '31' 	-- ENERO
+	 WHEN MONTH(CONT.`fechainicio`) = 02 THEN '28' 	-- FEBRERO
+	 WHEN MONTH(CONT.`fechainicio`) = 03 THEN '31' 	-- MARZO
+	 WHEN MONTH(CONT.`fechainicio`) = 04 THEN '30'	-- ABRIL
+	 WHEN MONTH(CONT.`fechainicio`) = 05 THEN '31' 	-- MAYO
+	 WHEN MONTH(CONT.`fechainicio`) = 06 THEN '30' 	-- JUNIO
+	 WHEN MONTH(CONT.`fechainicio`) = 07 THEN '31' 	-- JULIO
+	 WHEN MONTH(CONT.`fechainicio`) = 08 THEN '31' 	-- AGOSTO
+	 WHEN MONTH(CONT.`fechainicio`) = 09 THEN '30' 	-- SETIEMBRE
+	 WHEN MONTH(CONT.`fechainicio`) = 10 THEN '31' 	-- OCTUBRE
+	 WHEN MONTH(CONT.`fechainicio`) = 11 THEN '30' 	-- NOVIEMBRE
+	 WHEN MONTH(CONT.`fechainicio`) = 12 THEN '31' 	-- DICIEMBRE
+	END) *  DAY(CONT.`fechainicio`),0) as 'descuento'
+	FROM contratos	CONT
+	inner join direcciones  DIR 	on DIR.`iddireccion` = CONT.`iddireccion`
+	inner join clientes	CLI 	ON CLI.`idcliente` 	= CONT.`idcontrato`
+	inner join personas 	PER 	on PER.`idpersona` 	= CLI.`idpersona`
+	inner JOIN planes 	PLAN 	on PLAN.`idplan` 	= CONT.`idplan`
+	left join  pagos 	PAG 	on PAG.`idcontrato` 	= CONT.`idcontrato`
+	where PAG.`mespago` IS  NULL;
 end */$$
 DELIMITER ;
 
@@ -367,12 +477,12 @@ DELIMITER ;
 DELIMITER $$
 
 /*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_acreedores`(
-in _mespago tinyint(4)
+IN _mespago TINYINT(4)
 )
-begin
+BEGIN
 	SELECT  PAG.`idpago`,PERCLI.`nombres` AS 'nomCli', PERCLI.`apellidos` AS 'apeCli', 
 		CONCAT(CONTR.`tipodireccion`,' ', DIR.`direccion`,' ', CONTR.`numerodireccion`)AS 'dirreccionCli',
-		PERCLI.`dni` AS 'dniCli', CLIEN.`idcliente`, CONCAT(PAG.`mespago`, ' - ', PAG.`añopago`)AS 'mespago',
+		PERCLI.`dni` AS 'dniCli', CLIEN.`idcliente`, CONCAT(PAG.`mespago`, ' - ', PAG.`anopago`)AS 'mespago',
 		PAG.`netopagar`, PAG.`fechapago`, PERUSU.`nombres` AS 'nomUsu', PERUSU.`apellidos` AS 'apeUsu', CONTR.`diapago`
 		
 	FROM pagos PAG
@@ -382,8 +492,28 @@ begin
 	INNER JOIN personas PERCLI	ON PERCLI.`idpersona` 	= CLIEN.`idpersona`
 	INNER JOIN usuarios USU 	ON USU.`idusuario` 	= PAG.`idusuarioregistro`
 	INNER JOIN personas PERUSU 	ON PERUSU.`idpersona`	= USU.`idpersona`
-	where PAG.`mespago` = _mespago;
-end */$$
+	WHERE PAG.`mespago` = _mespago;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_clientes_inactivos` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_clientes_inactivos` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_clientes_inactivos`()
+BEGIN
+SELECT 	clientes.`idcliente`,
+	perC.apellidos AS 'apecliente', perC.nombres AS 'nomcliente', perC.dni,
+	perU.apellidos AS 'apeusuario', perU.nombres AS 'nomusuario',
+	clientes.`fecharegistro`
+	FROM clientes
+	INNER JOIN personas perC ON perC.idpersona = clientes.`idpersona`
+	INNER JOIN usuarios ON usuarios.`idusuario` = clientes.`idusuarioregistro`
+	INNER JOIN personas perU ON perU.idpersona = usuarios.`idpersona`
+	WHERE clientes.`estado`= '0'; 
+END */$$
 DELIMITER ;
 
 /* Procedure structure for procedure `listar_cliente_morochuco` */
@@ -482,6 +612,27 @@ BEGIN
 END */$$
 DELIMITER ;
 
+/* Procedure structure for procedure `listar_datos_personales_del_cliente` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_datos_personales_del_cliente` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_datos_personales_del_cliente`(
+	in _dni int
+)
+begin
+	select 	CLI.`idcliente`, CONCAT(PER.`apellidos`, ' ', PER.`nombres`) as 'cliente',
+		PER.`dni`, CONCAT(CONT.`tipodireccion`,' ' ,DIR.`direccion`, ' ', CONT.`numerodireccion`) as 'direccion',
+		CONT.`referencia`, CONT.`codcintillo`, CONT.`codsuministro`
+	from contratos 	CONT
+	inner join direcciones 	DIR on DIR.`iddireccion` 	= CONT.`iddireccion`
+	inner join clientes 	CLI on CLI.`idcliente` 	 	= CONT.`idcliente`
+	inner join personas 	PER on PER.`idpersona` 		= CLI.`idpersona`
+	where PER.`dni` = _dni AND CLI.`estado` = '1';
+end */$$
+DELIMITER ;
+
 /* Procedure structure for procedure `listar_departamentos` */
 
 /*!50003 DROP PROCEDURE IF EXISTS  `listar_departamentos` */;
@@ -574,6 +725,27 @@ BEGIN
 	INNER JOIN usuarios 	USU 	ON USU.`idusuario` 	= PAG.`idusuarioregistro`
 	INNER JOIN personas 	PERUSU 	ON PERUSU.`idpersona`	= USU.`idpersona`;
 END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `listar_pagos_cliente_unico` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `listar_pagos_cliente_unico` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_pagos_cliente_unico`(
+	IN _dni INT
+)
+begin
+	select 	CONCAT(PER.`apellidos`, ' ', PER.`nombres`) AS 'cliente', 
+		concat(PAG.`anopago`,'/' , PAG.`mespago`) as 'mespago',
+		PAG.`fechapago`, PAG.`netopagar`, PAG.`idpago`
+	from pagos PAG
+	inner join contratos CONT 	on CONT.`idcontrato` 	= PAG.`idcontrato`
+	inner join clientes CLI 	on CLI.`idcliente` 	= CONT.`idcliente`
+	inner join personas PER 	on PER.`idpersona` 	= CLI.`idpersona`
+	WHERE PER.`dni` = _dni AND CLI.`estado` = '1'; 
+end */$$
 DELIMITER ;
 
 /* Procedure structure for procedure `listar_personas` */
@@ -711,6 +883,192 @@ BEGIN
 END */$$
 DELIMITER ;
 
+/* Procedure structure for procedure `lista_de_cobranza` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `lista_de_cobranza` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `lista_de_cobranza`()
+BEGIN
+SELECT 
+	DISTINCT CLI.`idcliente`, CONCAT(PER.`nombres`, ' ', PER.`apellidos`) AS 'cliente',
+	CONCAT(CONT.`tipodireccion`,' ', DIR.`direccion`, ' ', CONT.`numerodireccion`) AS 'direccion',
+	CONCAT(CONT.`codcintillo`, ' ', CONT.`referencia`) AS 'referencia'
+	,PER.`telefono` ,PER.`dni`, CONT.`anexo`,
+	-- condicion
+	IF (PAG1.`mespago` IS NULL && PAG2.`mespago` IS NULL && PAG3.`mespago` IS NULL && PAG4.`mespago` IS NULL 
+		&& PAG5.`mespago` IS NULL && PAG6.`mespago` IS NULL && PAG7.`mespago` IS NULL && PAG8.`mespago` IS NULL 
+		&& PAG9.`mespago` IS NULL && PAG10.`mespago` IS NULL && PAG11.`mespago` IS NULL && PAG12.`mespago` IS NULL 
+		&& OPE.`tipooperacion` = 'Reconexion' || OPE.`tipooperacion` = 'Instalacion',	
+	CONCAT(
+	CASE
+		 WHEN MONTH(OPE.`fechahora`) = 01 AND YEAR(OPE.`fechahora`) = 2023 THEN 'ENERO' 	-- ENERO
+		 WHEN MONTH(OPE.`fechahora`) = 02 AND YEAR(OPE.`fechahora`) = 2023 THEN 'FEBRERO' 	-- FEBRERO
+		 WHEN MONTH(OPE.`fechahora`) = 03 AND YEAR(OPE.`fechahora`) = 2023 THEN 'MARZO' 	-- MARZO
+		 WHEN MONTH(OPE.`fechahora`) = 04 AND YEAR(OPE.`fechahora`) = 2023 THEN 'ABRIL'	-- ABRIL
+		 WHEN MONTH(OPE.`fechahora`) = 05 AND YEAR(OPE.`fechahora`) = 2023 THEN 'MAYO' 	-- MAYO
+		 WHEN MONTH(OPE.`fechahora`) = 06 AND YEAR(OPE.`fechahora`) = 2023 THEN 'JUNIO' 	-- JUNIO
+		 WHEN MONTH(OPE.`fechahora`) = 07 AND YEAR(OPE.`fechahora`) = 2023 THEN 'JULIO' 	-- JULIO
+		 WHEN MONTH(OPE.`fechahora`) = 08 AND YEAR(OPE.`fechahora`) = 2023 THEN 'AGOSTO' 	-- AGOSTO
+		 WHEN MONTH(OPE.`fechahora`) = 09 AND YEAR(OPE.`fechahora`) = 2023 THEN 'SETIEMBRE' 	-- SETIEMBRE
+		 WHEN MONTH(OPE.`fechahora`) = 10 AND YEAR(OPE.`fechahora`) = 2023 THEN 'OCTUBRE' 	-- OCTUBRE
+		 WHEN MONTH(OPE.`fechahora`) = 11 AND YEAR(OPE.`fechahora`) = 2023 THEN 'NOVIEMBRE' 	-- NOVIEMBRE
+		 WHEN MONTH(OPE.`fechahora`) = 12 AND YEAR(OPE.`fechahora`) = 2023 THEN 'DICIEMBRE' 	-- DICIEMBRE
+	END,'-',
+	CASE
+	 WHEN MONTH(OPE.`fechahora`) = 01 THEN '31' 	-- ENERO
+	 WHEN MONTH(OPE.`fechahora`) = 02 THEN '28' 	-- FEBRERO
+	 WHEN MONTH(OPE.`fechahora`) = 03 THEN '31' 	-- MARZO
+	 WHEN MONTH(OPE.`fechahora`) = 04 THEN '30'	-- ABRIL
+	 WHEN MONTH(OPE.`fechahora`) = 05 THEN '31' 	-- MAYO
+	 WHEN MONTH(OPE.`fechahora`) = 06 THEN '30' 	-- JUNIO
+	 WHEN MONTH(OPE.`fechahora`) = 07 THEN '31' 	-- JULIO
+	 WHEN MONTH(OPE.`fechahora`) = 08 THEN '31' 	-- AGOSTO
+	 WHEN MONTH(OPE.`fechahora`) = 09 THEN '30' 	-- SETIEMBRE
+	 WHEN MONTH(OPE.`fechahora`) = 10 THEN '31' 	-- OCTUBRE
+	 WHEN MONTH(OPE.`fechahora`) = 11 THEN '30' 	-- NOVIEMBRE
+	 WHEN MONTH(OPE.`fechahora`) = 12 THEN '31' 	-- DICIEMBRE
+	END,'-',
+	ROUND((PLAN.`precio` / CASE
+	 WHEN MONTH(OPE.`fechahora`) = 01 THEN '31' 	-- ENERO
+	 WHEN MONTH(OPE.`fechahora`) = 02 THEN '28' 	-- FEBRERO
+	 WHEN MONTH(OPE.`fechahora`) = 03 THEN '31' 	-- MARZO
+	 WHEN MONTH(OPE.`fechahora`) = 04 THEN '30'	-- ABRIL
+	 WHEN MONTH(OPE.`fechahora`) = 05 THEN '31' 	-- MAYO
+	 WHEN MONTH(OPE.`fechahora`) = 06 THEN '30' 	-- JUNIO
+	 WHEN MONTH(OPE.`fechahora`) = 07 THEN '31' 	-- JULIO
+	 WHEN MONTH(OPE.`fechahora`) = 08 THEN '31' 	-- AGOSTO
+	 WHEN MONTH(OPE.`fechahora`) = 09 THEN '30' 	-- SETIEMBRE
+	 WHEN MONTH(OPE.`fechahora`) = 10 THEN '31' 	-- OCTUBRE
+	 WHEN MONTH(OPE.`fechahora`) = 11 THEN '30' 	-- NOVIEMBRE
+	 WHEN MONTH(OPE.`fechahora`) = 12 THEN '31' 	-- DICIEMBRE
+	END) *  DAY(OPE.`fechahora`),0)), 'no tiene descuento') AS 'mesDiasDesc',
+	
+	-- Meses
+	-- ----------------------
+	PAG1.`mespago` AS 'enero', PAG2.`mespago` AS 'febrero'
+	, PAG3.`mespago` AS 'marzo', PAG4.`mespago` AS 'abril', PAG5.`mespago` AS 'mayo'
+	, PAG6.`mespago` AS 'junio', PAG7.`mespago` AS 'julio', PAG8.`mespago` AS 'agosto'
+	, PAG9.`mespago` AS 'setiembre', PAG10.`mespago` AS 'octubre', PAG11.`mespago` AS 'noviembre'
+	, PAG12.`mespago` AS 'diciembre'
+FROM contratos CONT
+LEFT JOIN operaciones OPE 	ON OPE.`idcontrato` 	= CONT.`idcontrato`
+INNER JOIN planes  PLAN 	ON PLAN.`idplan` 	= CONT.`idplan`
+INNER JOIN clientes CLI 	ON CLI.`idcliente` 	= CONT.`idcliente`
+INNER JOIN personas PER 	ON PER.`idpersona` 	= CLI.`idpersona`
+INNER JOIN direcciones 	DIR 	ON DIR.`iddireccion` 	= CONT.`iddireccion`
+LEFT JOIN  pagos 	PAG 	ON PAG.`idcontrato` 	= CONT.`idcontrato`
+LEFT JOIN pagos 	PAG1 	ON PAG1.`mespago` 	= '1' 	AND PAG1.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG2 	ON PAG2.`mespago` 	= '2' 	AND PAG2.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG3 	ON PAG3.`mespago` 	= '3' 	AND PAG3.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG4 	ON PAG4.`mespago` 	= '4' 	AND PAG4.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG5 	ON PAG5.`mespago` 	= '5' 	AND PAG5.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG6 	ON PAG6.`mespago` 	= '6' 	AND PAG6.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG7 	ON PAG7.`mespago` 	= '7' 	AND PAG7.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG8 	ON PAG8.`mespago` 	= '8' 	AND PAG8.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG9 	ON PAG9.`mespago` 	= '9' 	AND PAG9.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG10 	ON PAG10.`mespago`	= '10'	AND PAG10.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG11 	ON PAG11.`mespago` 	= '11' 	AND PAG11.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG12 	ON PAG12.`mespago` 	= '12'	AND PAG12.`idcontrato` = CONT.`idcontrato`
+WHERE CLI.`estado` = '1' AND CONT.`fechatermino` IS NULL;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `lista_de_cobranza_segun_usuarioregistro` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `lista_de_cobranza_segun_usuarioregistro` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `lista_de_cobranza_segun_usuarioregistro`(
+IN _idusuarioregistro INT
+)
+BEGIN
+SELECT 
+	DISTINCT CLI.`idcliente`, CONCAT(PER.`nombres`, ' ', PER.`apellidos`) AS 'cliente',
+	CONCAT(CONT.`tipodireccion`,' ', DIR.`direccion`, ' ', CONT.`numerodireccion`) AS 'direccion',
+	CONCAT(CONT.`codcintillo`, ' ', CONT.`referencia`) AS 'referencia'
+	,PER.`telefono` ,PER.`dni`, CONT.`anexo`,
+	-- condicion
+	IF (PAG1.`mespago` IS NULL && PAG2.`mespago` IS NULL && PAG3.`mespago` IS NULL && PAG4.`mespago` IS NULL 
+		&& PAG5.`mespago` IS NULL && PAG6.`mespago` IS NULL && PAG7.`mespago` IS NULL && PAG8.`mespago` IS NULL 
+		&& PAG9.`mespago` IS NULL && PAG10.`mespago` IS NULL && PAG11.`mespago` IS NULL && PAG12.`mespago` IS NULL 
+		&& OPE.`tipooperacion` = 'Reconexion' || OPE.`tipooperacion` = 'Instalacion',	
+	CONCAT(
+	CASE
+		 WHEN MONTH(OPE.`fechahora`) = 01 AND YEAR(OPE.`fechahora`) = 2023 THEN 'ENERO' 	-- ENERO
+		 WHEN MONTH(OPE.`fechahora`) = 02 AND YEAR(OPE.`fechahora`) = 2023 THEN 'FEBRERO' 	-- FEBRERO
+		 WHEN MONTH(OPE.`fechahora`) = 03 AND YEAR(OPE.`fechahora`) = 2023 THEN 'MARZO' 	-- MARZO
+		 WHEN MONTH(OPE.`fechahora`) = 04 AND YEAR(OPE.`fechahora`) = 2023 THEN 'ABRIL'	-- ABRIL
+		 WHEN MONTH(OPE.`fechahora`) = 05 AND YEAR(OPE.`fechahora`) = 2023 THEN 'MAYO' 	-- MAYO
+		 WHEN MONTH(OPE.`fechahora`) = 06 AND YEAR(OPE.`fechahora`) = 2023 THEN 'JUNIO' 	-- JUNIO
+		 WHEN MONTH(OPE.`fechahora`) = 07 AND YEAR(OPE.`fechahora`) = 2023 THEN 'JULIO' 	-- JULIO
+		 WHEN MONTH(OPE.`fechahora`) = 08 AND YEAR(OPE.`fechahora`) = 2023 THEN 'AGOSTO' 	-- AGOSTO
+		 WHEN MONTH(OPE.`fechahora`) = 09 AND YEAR(OPE.`fechahora`) = 2023 THEN 'SETIEMBRE' 	-- SETIEMBRE
+		 WHEN MONTH(OPE.`fechahora`) = 10 AND YEAR(OPE.`fechahora`) = 2023 THEN 'OCTUBRE' 	-- OCTUBRE
+		 WHEN MONTH(OPE.`fechahora`) = 11 AND YEAR(OPE.`fechahora`) = 2023 THEN 'NOVIEMBRE' 	-- NOVIEMBRE
+		 WHEN MONTH(OPE.`fechahora`) = 12 AND YEAR(OPE.`fechahora`) = 2023 THEN 'DICIEMBRE' 	-- DICIEMBRE
+	END,'-',
+	CASE
+	 WHEN MONTH(OPE.`fechahora`) = 01 THEN '31' 	-- ENERO
+	 WHEN MONTH(OPE.`fechahora`) = 02 THEN '28' 	-- FEBRERO
+	 WHEN MONTH(OPE.`fechahora`) = 03 THEN '31' 	-- MARZO
+	 WHEN MONTH(OPE.`fechahora`) = 04 THEN '30'	-- ABRIL
+	 WHEN MONTH(OPE.`fechahora`) = 05 THEN '31' 	-- MAYO
+	 WHEN MONTH(OPE.`fechahora`) = 06 THEN '30' 	-- JUNIO
+	 WHEN MONTH(OPE.`fechahora`) = 07 THEN '31' 	-- JULIO
+	 WHEN MONTH(OPE.`fechahora`) = 08 THEN '31' 	-- AGOSTO
+	 WHEN MONTH(OPE.`fechahora`) = 09 THEN '30' 	-- SETIEMBRE
+	 WHEN MONTH(OPE.`fechahora`) = 10 THEN '31' 	-- OCTUBRE
+	 WHEN MONTH(OPE.`fechahora`) = 11 THEN '30' 	-- NOVIEMBRE
+	 WHEN MONTH(OPE.`fechahora`) = 12 THEN '31' 	-- DICIEMBRE
+	END,'-',
+	ROUND((PLAN.`precio` / CASE
+	 WHEN MONTH(OPE.`fechahora`) = 01 THEN '31' 	-- ENERO
+	 WHEN MONTH(OPE.`fechahora`) = 02 THEN '28' 	-- FEBRERO
+	 WHEN MONTH(OPE.`fechahora`) = 03 THEN '31' 	-- MARZO
+	 WHEN MONTH(OPE.`fechahora`) = 04 THEN '30'	-- ABRIL
+	 WHEN MONTH(OPE.`fechahora`) = 05 THEN '31' 	-- MAYO
+	 WHEN MONTH(OPE.`fechahora`) = 06 THEN '30' 	-- JUNIO
+	 WHEN MONTH(OPE.`fechahora`) = 07 THEN '31' 	-- JULIO
+	 WHEN MONTH(OPE.`fechahora`) = 08 THEN '31' 	-- AGOSTO
+	 WHEN MONTH(OPE.`fechahora`) = 09 THEN '30' 	-- SETIEMBRE
+	 WHEN MONTH(OPE.`fechahora`) = 10 THEN '31' 	-- OCTUBRE
+	 WHEN MONTH(OPE.`fechahora`) = 11 THEN '30' 	-- NOVIEMBRE
+	 WHEN MONTH(OPE.`fechahora`) = 12 THEN '31' 	-- DICIEMBRE
+	END) *  DAY(OPE.`fechahora`),0)), 'no tiene descuento') AS 'mesDiasDesc',
+	
+	-- Meses
+	-- ----------------------
+	PAG1.`mespago` AS 'enero', PAG2.`mespago` AS 'febrero'
+	, PAG3.`mespago` AS 'marzo', PAG4.`mespago` AS 'abril', PAG5.`mespago` AS 'mayo'
+	, PAG6.`mespago` AS 'junio', PAG7.`mespago` AS 'julio', PAG8.`mespago` AS 'agosto'
+	, PAG9.`mespago` AS 'setiembre', PAG10.`mespago` AS 'octubre', PAG11.`mespago` AS 'noviembre'
+	, PAG12.`mespago` AS 'diciembre'
+FROM contratos CONT
+LEFT JOIN operaciones OPE 	ON OPE.`idcontrato` 	= CONT.`idcontrato`
+INNER JOIN planes  PLAN 	ON PLAN.`idplan` 	= CONT.`idplan`
+INNER JOIN clientes CLI 	ON CLI.`idcliente` 	= CONT.`idcliente`
+INNER JOIN personas PER 	ON PER.`idpersona` 	= CLI.`idpersona`
+INNER JOIN direcciones 	DIR 	ON DIR.`iddireccion` 	= CONT.`iddireccion`
+LEFT JOIN  pagos 	PAG 	ON PAG.`idcontrato` 	= CONT.`idcontrato`
+LEFT JOIN pagos 	PAG1 	ON PAG1.`mespago` 	= '1' 	AND PAG1.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG2 	ON PAG2.`mespago` 	= '2' 	AND PAG2.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG3 	ON PAG3.`mespago` 	= '3' 	AND PAG3.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG4 	ON PAG4.`mespago` 	= '4' 	AND PAG4.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG5 	ON PAG5.`mespago` 	= '5' 	AND PAG5.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG6 	ON PAG6.`mespago` 	= '6' 	AND PAG6.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG7 	ON PAG7.`mespago` 	= '7' 	AND PAG7.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG8 	ON PAG8.`mespago` 	= '8' 	AND PAG8.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG9 	ON PAG9.`mespago` 	= '9' 	AND PAG9.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG10 	ON PAG10.`mespago`	= '10'	AND PAG10.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG11 	ON PAG11.`mespago` 	= '11' 	AND PAG11.`idcontrato` = CONT.`idcontrato`
+LEFT JOIN pagos 	PAG12 	ON PAG12.`mespago` 	= '12'	AND PAG12.`idcontrato` = CONT.`idcontrato`
+WHERE CLI.`estado` = '1'AND CLI.`idusuarioregistro` = _idusuarioregistro AND CONT.`fechatermino` IS NULL;
+END */$$
+DELIMITER ;
+
 /* Procedure structure for procedure `modificarUsuario` */
 
 /*!50003 DROP PROCEDURE IF EXISTS  `modificarUsuario` */;
@@ -810,12 +1168,13 @@ DELIMITER $$
 IN _idcontrato 	    	INT,
 IN _idusuariotecnico 	INT,
 IN _tipooperacion	VARCHAR(50),
+in _fechahora		date,
 IN _materialesretirados VARCHAR(500),
 IN _materialesusados	VARCHAR(500)
 )
 BEGIN
-INSERT INTO operaciones(idcontrato, idusuariotecnico, tipooperacion, materialesretirados, materialesusados)
-VALUES 	(_idcontrato, _idusuariotecnico, _tipooperacion, _materialesretirados, _materialesusados);
+INSERT INTO operaciones(idcontrato, idusuariotecnico, tipooperacion, fechahora, materialesretirados, materialesusados)
+VALUES 	(_idcontrato, _idusuariotecnico, _tipooperacion, _fechahora, _materialesretirados, _materialesusados);
 END */$$
 DELIMITER ;
 
@@ -969,6 +1328,34 @@ INNER JOIN personas
 ON personas.idpersona = usuarios.idpersona
 WHERE nombreusuario = _nombreusuario AND estado = 1;
 END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `total_clientes_x_distrito` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `total_clientes_x_distrito` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `total_clientes_x_distrito`()
+begin
+	SELECT DIST.`nombredistrito` AS 'distrito', COUNT(DIST.`nombredistrito`) AS 'total'
+	FROM clientes CLI
+	INNER JOIN personas PER 	ON PER.`idpersona` = CLI.`idpersona`
+	LEFT JOIN distritos DIST 	ON DIST.`iddistrito` = PER.`iddistrito`
+	GROUP BY (DIST.`nombredistrito`);
+end */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `total_De_clientes` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `total_De_clientes` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `total_De_clientes`()
+begin
+	select count(idcliente) as 'totalCliente' from clientes where estado = '1';
+end */$$
 DELIMITER ;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
